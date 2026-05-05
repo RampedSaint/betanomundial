@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
 <title>El Lado B del Mundial · Betano × Ramped · Issue Nº01</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -758,12 +760,12 @@
   .when {
     background: var(--black);
     flex-direction: column;
-    padding: 5vh 5vw;
+    padding: 3vh 5vw 3.5vh;
   }
   .when-head {
     border-bottom: 1px solid rgba(244,236,216,0.2);
-    padding-bottom: 2vh;
-    margin-bottom: 3vh;
+    padding-bottom: 1.2vh;
+    margin-bottom: 2vh;
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 3vw;
@@ -772,7 +774,7 @@
   .when-head h2 {
     font-family: var(--display);
     font-weight: 900;
-    font-size: clamp(3rem, 6.5vw, 7rem);
+    font-size: clamp(2.4rem, 4.5vw, 5rem);
     line-height: 0.85;
     color: var(--cream);
     letter-spacing: -0.025em;
@@ -802,10 +804,11 @@
   .when-map {
     background: var(--ink);
     border: 1px solid rgba(244,236,216,0.12);
-    padding: 2.5rem 2rem;
+    padding: 1.3rem 1.5rem 1.5rem;
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow: hidden;
   }
   .when-map-tag {
     font-family: var(--body);
@@ -814,36 +817,43 @@
     text-transform: uppercase;
     color: var(--orange);
     font-weight: 800;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
   .when-map-title {
     font-family: var(--display);
     font-style: italic;
     font-weight: 800;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     color: var(--cream);
     line-height: 1;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.8rem;
   }
   .map-svg-wrap {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 0;
   }
-  .map-svg-wrap svg { width: 100%; height: auto; max-height: 100%; }
+  .map-svg-wrap svg {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+  }
 
   .when-list {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.55rem;
   }
   .match {
     display: grid;
-    grid-template-columns: 100px 1fr auto;
-    gap: 1.5rem;
+    grid-template-columns: 90px 1fr auto;
+    gap: 1.2rem;
     align-items: center;
-    padding: 1.4rem 1.6rem;
+    padding: 1rem 1.3rem;
     background: linear-gradient(90deg, rgba(255,107,0,0.06), transparent);
     border-left: 3px solid var(--orange);
     position: relative;
@@ -866,7 +876,7 @@
   }
   .match.m2 .match-date, .match.m3 .match-date { color: var(--magenta); }
   .match.m4 .match-date { color: var(--gold); }
-  .match-date .day { font-size: 3rem; display: block; letter-spacing: -0.05em; }
+  .match-date .day { font-size: 2.4rem; display: block; letter-spacing: -0.05em; }
   .match-date .month {
     font-family: var(--body);
     font-style: normal;
@@ -2748,7 +2758,7 @@
       <div class="when-map-tag">— Las tres ciudades del shoot</div>
       <div class="when-map-title">Recorrido<br>en territorio.</div>
       <div class="map-svg-wrap">
-        <svg viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg" aria-label="Mapa USA con sedes">
+        <svg viewBox="0 30 500 260" xmlns="http://www.w3.org/2000/svg" aria-label="Mapa USA con sedes">
           <defs>
             <filter id="glow"><feGaussianBlur stdDeviation="2"/></filter>
           </defs>
