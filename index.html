@@ -55,6 +55,35 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
+  .cross-deck-link {
+    position: fixed;
+    bottom: 1.5vh;
+    left: 5vw;
+    z-index: 50;
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--cream);
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    background: rgba(20,17,15,0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,107,0,0.35);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .cross-deck-link::before { content: '→ '; color: var(--orange); margin-right: 0.2em; }
+  .cross-deck-link:hover {
+    color: var(--orange);
+    border-color: var(--orange);
+    background: rgba(255,107,0,0.08);
+  }
+  @media (max-width: 880px) {
+    .cross-deck-link { font-size: 0.55rem; padding: 0.3rem 0.6rem; bottom: 2vh; left: 6vw; letter-spacing: 0.16em; }
+  }
+
   /* ───── Custom cursor ───── */
   .cursor-dot, .cursor-ring {
     position: fixed;
@@ -1178,8 +1207,9 @@
   }
   .tents-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+    gap: 1rem;
   }
   .tent {
     background: var(--black);
@@ -3198,21 +3228,21 @@
   <div class="plan-toc">
     <div class="toc-row">
       <div class="toc-num">I.</div>
-      <div class="toc-title">Las 4 <em>Notas Grandes</em></div>
-      <div class="toc-count">04</div>
+      <div class="toc-title">Las 3 <em>Notas Grandes</em></div>
+      <div class="toc-count">03</div>
       <div class="toc-desc">Tentpoles. Encuentros íntimos con familiares y figuras del entorno mundialista. Lo más grande del ciclo.</div>
     </div>
     <div class="toc-row">
       <div class="toc-num">II.</div>
-      <div class="toc-title">La <em>Nota Perfecta</em></div>
+      <div class="toc-title">Cápsulas <em>a famosos</em></div>
       <div class="toc-count">12-16</div>
-      <div class="toc-desc">La previa que la audiencia construye. Pepe en la calle preguntando qué le diría, qué cocinaría, dónde la llevaría.</div>
+      <div class="toc-desc">Pepe sale a la calle a cazar argentinos famosos en USA. Una pregunta filosa, reacción real, clip viralizable.</div>
     </div>
     <div class="toc-row">
       <div class="toc-num">III.</div>
-      <div class="toc-title">Cápsulas <em>Mundialistas</em></div>
+      <div class="toc-title">Cápsulas <em>de reporteo</em></div>
       <div class="toc-count">08-10</div>
-      <div class="toc-desc">Formato paparazzi: hoteles, bares, propinas, menús, famosos. Producción ligera, alta frecuencia.</div>
+      <div class="toc-desc">Hoteles, bares, propinas, menús. Datos curiosos del entorno mundialista. Producción ligera, alta frecuencia.</div>
     </div>
     <div class="toc-row">
       <div class="toc-num">IV.</div>
@@ -3228,7 +3258,7 @@
 <section class="slide tents" id="s7">
   <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> Capa I — Las Notas Grandes</div>
   <div class="tents-head">
-    <h2>Las 4<br>Notas <em>Grandes.</em></h2>
+    <h2>Las 3<br>Notas <em>Grandes.</em></h2>
     <div class="feat-tag">Cada nota es un encuentro irrepetible. Un día completo de filmación. <em>El corazón del ciclo.</em></div>
   </div>
   <div class="tents-body">
@@ -3248,11 +3278,6 @@
         <h3>Compras <em>mundialistas</em></h3>
         <p>Acompañamos a la invitada a comprar lo típico del Mundial. Activación con argentinos del lugar, competencia en vivo y dos camisetas de la Selección como premio.</p>
       </div>
-      <div class="tent">
-        <div class="tent-tag"><span>Nota 04 · Timbre</span><span class="tent-num">iv.</span></div>
-        <h3>Vecinos <em>inesperados</em></h3>
-        <p>Tocamos timbre en el barrio del entorno argentino en USA. Reacciones reales, momentos espontáneos y el ADN viral más puro del formato.</p>
-      </div>
     </div>
     <div class="shortlist">
       <div class="shortlist-head">
@@ -3266,63 +3291,62 @@
         <li><span class="sl-num">04</span><span class="sl-name">Valu Cervantes</span><span class="sl-tag">Pareja</span></li>
         <li><span class="sl-num">05</span><span class="sl-name">Camila Galante</span><span class="sl-tag">Pareja</span></li>
         <li><span class="sl-num">06</span><span class="sl-name">Karen Cavallari</span><span class="sl-tag">Pareja</span></li>
-        <li><span class="sl-num">07</span><span class="sl-name">Guillermo Coppola</span><span class="sl-tag">Personaje</span></li>
       </ol>
-      <div class="shortlist-foot">— Mix sugerido: <em>3 perfiles del entorno familiar + 1 personaje mundialista.</em> Lista a confirmar según disponibilidad. <strong>Honorarios de las 3 notas especiales no incluidos en el cotizado — se presupuestan aparte (slide 13).</strong></div>
+      <div class="shortlist-foot">— Mix sugerido: <em>3 invitadas del entorno cercano (familia + pareja).</em> Una por Nota Grande. Lista a confirmar según disponibilidad.</div>
     </div>
   </div>
   <div class="slide-num">07</div>
 </section>
 
-<!-- ════════ SLIDE 08 — LA NOTA PERFECTA ════════ -->
+<!-- ════════ SLIDE 08 — CÁPSULAS A FAMOSOS ════════ -->
 <section class="slide perfecta" id="s8">
   <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> Capa II — El motor narrativo</div>
   <div class="perfecta-head">
     <div class="top-line">
-      <h2>La Nota<br><em>Perfecta.</em></h2>
+      <h2>Cápsulas a<br><em>famosos.</em></h2>
     </div>
-    <div class="perfecta-quote">La previa que la audiencia construye. <strong>Cada Nota Grande se gesta antes del encuentro</strong> — el público arma el plan, nosotros ejecutamos.</div>
+    <div class="perfecta-quote">Pepe sale a la calle a cazar argentinos famosos en USA. <strong>Formato ágil entre Notas Grandes</strong> — pregunta corta, reacción real, clip viralizable.</div>
   </div>
   <div class="perfecta-body">
     <div class="flow">
       <div class="flow-step">
         <div class="fnum">1</div>
         <div>
-          <h4>Build-up con la gente</h4>
-          <p>Pepe sale a la calle <em>3-4 días antes</em> con micrófono. Bares, zonas turísticas, puntos de encuentro de argentinos en USA.</p>
+          <h4>El radar</h4>
+          <p>Mapeamos a famosos argentinos que viajan al Mundial: jugadores retirados, periodistas, conductores, influencers. <em>Hoteles, bares, fan zones, shoppings.</em></p>
         </div>
       </div>
       <div class="flow-step">
         <div class="fnum">2</div>
         <div>
-          <h4>Las preguntas guía</h4>
-          <p><em>"¿Qué le preguntarías?"</em> · <em>"¿A dónde la llevarías?"</em> · <em>"¿Qué cocinarías?"</em> · La gente elige el plan.</p>
+          <h4>El abordaje</h4>
+          <p>Pepe los intercepta en el momento. Sin set, sin guion. <em>Una sola pregunta filosa</em> que dispara una reacción honesta — el ADN del formato Pepe.</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="fnum">3</div>
         <div>
-          <h4>El encuentro</h4>
-          <p>Pepe ejecuta el plan que la audiencia construyó. Llega a la casa, al estadio, al shopping con la idea ya validada por el público.</p>
+          <h4>El clip</h4>
+          <p>Pieza vertical 30-60s. Editada en caliente, lista para subir el mismo día. Crece la conversación entre Notas Grandes.</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="fnum">4</div>
         <div>
-          <h4>El payoff</h4>
-          <p>Mostramos qué funcionó, qué no, cómo reaccionó la invitada al plan que armó el público. <em>Loop completo.</em></p>
+          <h4>El loop</h4>
+          <p>Cada cápsula alimenta a la siguiente. La gente espera quién va a aparecer. <em>Engagement diario, sin presupuesto pesado.</em></p>
         </div>
       </div>
     </div>
     <div class="perfecta-why">
       <div class="label">— Por qué importa</div>
-      <h3>Es el corazón <em>del deck.</em></h3>
+      <h3>Es el motor <em>diario.</em></h3>
       <ul>
-        <li>Convierte a la audiencia en co-creadora, no espectador.</li>
-        <li>Genera 2 semanas de contenido satélite por cada Nota Grande.</li>
-        <li>Multiplica engagement orgánico antes del momento clímax.</li>
-        <li>Cada pregunta de calle es un punto natural de inserción Betano.</li>
-        <li>Construye una marca compartida con el público — no solo dirigida a él.</li>
+        <li>Mantiene el ciclo vivo entre Notas Grandes.</li>
+        <li>Producción liviana = alta frecuencia sin saturar el budget.</li>
+        <li>Pepe en su mejor versión: improvisación + chispa.</li>
+        <li>Cada cápsula es un punto natural de inserción Betano.</li>
+        <li>El factor sorpresa empuja shares y guarda la conversación 7/7.</li>
       </ul>
     </div>
   </div>
@@ -3393,7 +3417,7 @@
   <div class="rec-grid">
     <div class="rec-col col-1">
       <div class="layer-mark">— Capa III</div>
-      <h3>Cápsulas<br><em>mundialistas</em></h3>
+      <h3>Cápsulas<br><em>de reporteo</em></h3>
       <div class="rec-count">8–10</div>
       <ul>
         <li>Hoteles donde se hospedan los famosos</li>
@@ -3449,35 +3473,35 @@
         <div class="channel">
           <div class="channel-mark">IG</div>
           <div class="channel-info">
-            <div class="ch-name">Instagram · Reels</div>
-            <div class="ch-handle">@pepeochoa88 · ~250K views por reel</div>
+            <div class="ch-name">Instagram · Reels + Stories</div>
+            <div class="ch-handle">@pepeochoa88 · ~250K views por reel · ~60K por historia</div>
           </div>
           <div class="channel-type">Principal</div>
         </div>
         <div class="channel">
-          <div class="channel-mark">IG</div>
+          <div class="channel-mark">TT</div>
           <div class="channel-info">
-            <div class="ch-name">Instagram · Stories</div>
-            <div class="ch-handle">@pepeochoa88 · ~60K views por historia</div>
+            <div class="ch-name">TikTok</div>
+            <div class="ch-handle">@pepeochoa88 · vertical-first, replica + native</div>
           </div>
-          <div class="channel-type">Tiempo real</div>
+          <div class="channel-type">Reach</div>
         </div>
         <div class="channel">
-          <div class="channel-mark">B</div>
+          <div class="channel-mark">X</div>
           <div class="channel-info">
-            <div class="ch-name">Cuentas Betano</div>
-            <div class="ch-handle">Amplificación nativa de la marca</div>
+            <div class="ch-name">X (Twitter)</div>
+            <div class="ch-handle">@pepeochoa88 · cobertura en tiempo real + clips</div>
           </div>
-          <div class="channel-type">Soporte</div>
+          <div class="channel-type">Conversación</div>
         </div>
       </div>
-      <div class="dist-note">Todo el contenido se sube primero al Instagram de Pepe (Reels + Stories) y se replica en las cuentas de Betano. La identidad y el tono editorial los pone Pepe; Betano amplifica.</div>
+      <div class="dist-note">Todo el contenido se sube primero a las cuentas de Pepe: <strong>Instagram + TikTok + X (Twitter)</strong>. La identidad y el tono editorial los pone Pepe.</div>
     </div>
     <div class="dist-block dist-bonus">
       <div class="dist-tag-row">
-        <div class="dist-tag">Bono opcional</div>
+        <div class="dist-tag">Cobertura TV / Stream</div>
       </div>
-      <h3>Amplificación<br><em>TV / Stream.</em></h3>
+      <h3>LAM · Bondi<br><em>· SQP.</em></h3>
       <div class="channels">
         <div class="channel">
           <div class="channel-mark">L</div>
@@ -3503,16 +3527,8 @@
           </div>
           <div class="channel-type">TV abierta</div>
         </div>
-        <div class="channel">
-          <div class="channel-mark">E</div>
-          <div class="channel-info">
-            <div class="ch-name">El Ejército de LAM</div>
-            <div class="ch-handle">@elejercitodelam · Twitter</div>
-          </div>
-          <div class="channel-type">Twitter</div>
-        </div>
       </div>
-      <div class="dist-note">Pepe tiene relación directa con Ángel de Brito y Yanina Latorre. Combo LAM + Bondi + SQP + Twitter <strong>negociable en USD 15-20K</strong>. Detalle de inversión en slide 13.</div>
+      <div class="dist-note">Pepe tiene relación directa con Ángel de Brito y Yanina Latorre. Combo LAM + Bondi + SQP <strong>negociable en USD 15-20K</strong>. Detalle de inversión en slide 13.</div>
     </div>
   </div>
   <div class="slide-num">11</div>
@@ -3523,35 +3539,29 @@
   <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> El equipo</div>
   <div class="team-head">
     <h2>Quiénes <em>viajan,</em><br>quiénes <em>quedan.</em></h2>
-    <div class="meta">Equipo en terreno + post en Argentina<br><strong>4 viajan · 1 base AR</strong></div>
+    <div class="meta">Equipo lean en terreno + post en Argentina<br><strong>3 viajan · 1 base AR</strong></div>
   </div>
   <div class="team-grid">
     <div class="team-card travels">
       <div class="role-num">01</div>
       <h3>Host<em>· enviado especial</em></h3>
-      <p>Pepe Ochoa. Conducción, presencia en cámara, vocería del ciclo. La cara visible del proyecto.</p>
+      <p>Pepe Ochoa. Conducción, presencia en cámara, vocería del ciclo. La cara visible del proyecto. Suma coordinación creativa en terreno.</p>
       <div class="role-tag">PEPE OCHOA</div>
     </div>
     <div class="team-card travels">
       <div class="role-num">02</div>
-      <h3>Productor<em>· general</em></h3>
-      <p>Coordinación de logística, casting, agenda diaria, relación con invitadas, presupuesto y cronograma.</p>
-      <div class="role-tag">A confirmar</div>
-    </div>
-    <div class="team-card travels">
-      <div class="role-num">03</div>
       <h3>Director<em>· de fotografía</em></h3>
       <p>Cámara principal y look visual del ciclo. Responsable del lenguaje cinematográfico y dirección de cada toma.</p>
       <div class="role-tag">A confirmar</div>
     </div>
     <div class="team-card travels">
-      <div class="role-num">04</div>
+      <div class="role-num">03</div>
       <h3>Asistente<em>· cámara 2 / sonido</em></h3>
       <p>Segunda cámara, microfoneo, soporte técnico y gestión de equipos en locaciones cambiantes.</p>
       <div class="role-tag">A confirmar</div>
     </div>
     <div class="team-card remote">
-      <div class="role-num">05</div>
+      <div class="role-num">04</div>
       <h3>Editor<em>· en caliente</em></h3>
       <p>Edita y entrega <strong>día por día</strong> mientras dura el Mundial. Turnaround 24-48h por pieza. Base en Argentina, recibe material en rolling.</p>
       <div class="role-tag">A confirmar</div>
@@ -3560,7 +3570,7 @@
   <div class="team-summary">
     <div class="team-sum-item">
       <div class="lbl">Personas en terreno</div>
-      <div class="val">4 <em>en USA</em></div>
+      <div class="val">3 <em>en USA</em></div>
     </div>
     <div class="team-sum-item">
       <div class="lbl">Días de shoot</div>
@@ -3591,34 +3601,25 @@
       <div class="invest-amount"><span class="currency">USD</span> 65 000</div>
       <ul class="invest-includes">
         <li>Pepe Ochoa · 3 semanas en USA</li>
-        <li>Equipo en terreno (productor + DP + asistente)</li>
+        <li>Equipo lean: 3 en terreno (host + DP + asistente) + 1 post AR</li>
         <li>Vuelos, alojamiento, viáticos, traslados</li>
         <li>Equipamiento + alquiler local en USA</li>
         <li>Edición rolling · entregas diarias durante el Mundial</li>
-        <li>Coordinación de invitadas + canjes operativos (no incluye honorarios de talento)</li>
-        <li>Distribución orgánica · @pepeochoa88 + Betano</li>
+        <li>Coordinación de invitadas + canjes operativos</li>
+        <li>Distribución orgánica · IG + TikTok + X (Twitter)</li>
         <li>Coordinación creativa · dirección Ramped en terreno</li>
       </ul>
     </div>
     <div class="invest-bonus">
-      <div class="scenario-tag">Bono · Opcional</div>
-      <h3>Amplificación<br><em>TV / Stream.</em></h3>
+      <div class="scenario-tag">Cobertura · TV / Stream</div>
+      <h3>LAM · Bondi<br><em>· SQP.</em></h3>
       <div class="amt-bonus">USD 15&nbsp;000 – 20&nbsp;000</div>
       <ul>
-        <li>Cápsula "Pepe en el Mundial" en LAM</li>
+        <li>Cápsula "Pepe en el Mundial" en LAM (América TV)</li>
         <li>Cobertura editorial en SQP (Yanina Latorre)</li>
         <li>Bondi Live · Stream YouTube</li>
-        <li>El Ejército de LAM · Twitter</li>
       </ul>
       <div class="note">Rango negociado en base a la relación directa de Pepe con Ángel de Brito y Yanina Latorre. Cierre final tras confirmación.</div>
-    </div>
-    <div class="invest-extra">
-      <div class="extra-tag">No cotizado</div>
-      <div class="extra-row">
-        <h4>3 notas <em>especiales.</em></h4>
-        <p>Honorarios de las 3 figuras tope del ciclo · cotización dura solo posible tras confirmación de la acción.</p>
-        <div class="extra-amount">USD <em>a cotizar</em></div>
-      </div>
     </div>
     <div class="invest-foot">— <strong>Fee Ramped por agencia + dirección creativa: 15% del total de la acción · NO incluido en los montos de arriba.</strong> Se factura aparte una vez confirmado el budget final.</div>
   </div>
@@ -3767,6 +3768,8 @@
     });
   });
 </script>
+
+<a class="cross-deck-link" href="https://getramped.com/betanomundial2" target="_blank" rel="noopener">Ver resumen ejecutivo</a>
 
 </body>
 </html>

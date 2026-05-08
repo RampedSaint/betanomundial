@@ -48,6 +48,35 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
+  .cross-deck-link {
+    position: fixed;
+    bottom: 1.5vh;
+    left: 5vw;
+    z-index: 50;
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--cream);
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    background: rgba(20,17,15,0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,107,0,0.35);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .cross-deck-link::before { content: '→ '; color: var(--orange); margin-right: 0.2em; }
+  .cross-deck-link:hover {
+    color: var(--orange);
+    border-color: var(--orange);
+    background: rgba(255,107,0,0.08);
+  }
+  @media (max-width: 880px) {
+    .cross-deck-link { font-size: 0.55rem; padding: 0.3rem 0.6rem; bottom: 2vh; left: 6vw; letter-spacing: 0.16em; }
+  }
+
   .slide {
     width: 100vw;
     height: 100vh;
@@ -942,6 +971,8 @@
 
   <div class="slide-num">02</div>
 </section>
+
+<a class="cross-deck-link" href="https://getramped.com/betanomundial" target="_blank" rel="noopener">Ver versión completa</a>
 
 </body>
 </html>
