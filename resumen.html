@@ -50,40 +50,38 @@
 
   .cross-deck-link {
     position: fixed;
-    top: 2vh;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 5.5vh;
+    right: 5vw;
     z-index: 9000;
     font-family: var(--body);
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    font-weight: 800;
-    color: var(--ink);
+    font-weight: 700;
+    color: var(--cream);
+    opacity: 0.55;
     text-decoration: none;
-    padding: 0.5rem 0.9rem;
-    background: var(--orange);
-    border: 1px solid var(--orange-deep);
-    box-shadow: 0 4px 18px rgba(255,107,0,0.35);
-    transition: background 0.2s, color 0.2s, transform 0.18s;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(244,236,216,0.3);
+    padding-bottom: 0.15rem;
+    transition: opacity 0.2s, color 0.2s, border-color 0.2s;
   }
-  .cross-deck-link::before { content: '→ '; color: var(--ink); margin-right: 0.25em; font-weight: 900; }
+  .cross-deck-link::before { content: '→ '; color: var(--orange); opacity: 1; margin-right: 0.2em; }
   .cross-deck-link:hover {
-    background: var(--cream);
-    color: var(--ink);
-    transform: translateX(-50%) translateY(-1px);
+    opacity: 1;
+    color: var(--orange);
+    border-bottom-color: var(--orange);
   }
   @media (max-width: 880px) {
     .cross-deck-link {
       top: auto;
       bottom: 1.5vh;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.55rem;
-      padding: 0.35rem 0.65rem;
-      letter-spacing: 0.14em;
+      right: 6vw;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
     }
-    .cross-deck-link:hover { transform: translateX(-50%); }
   }
 
   .slide {
