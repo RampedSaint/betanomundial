@@ -3246,38 +3246,71 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════════════════
-     ▰▰▰ COVER SLIDE — PRO REBUILD ▰▰▰
+     ▰▰▰ COVER SLIDE — PRO REBUILD v2 (Editorial Magazine) ▰▰▰
      ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Override existing cover bg with denser atmosphere */
+  /* Override existing cover bg with cinematic mesh */
   .cover {
     background:
-      radial-gradient(1200px 800px at 78% 22%, rgba(255,31,107,0.15), transparent 55%),
-      radial-gradient(900px 700px at 8% 92%, rgba(255,107,0,0.13), transparent 60%),
-      radial-gradient(700px 700px at 50% 50%, rgba(40,34,29,0.45), transparent 70%),
-      var(--black) !important;
+      radial-gradient(1400px 900px at 82% 35%, rgba(255,31,107,0.20), transparent 50%),
+      radial-gradient(1100px 800px at 10% 95%, rgba(255,107,0,0.18), transparent 55%),
+      radial-gradient(700px 600px at 50% 8%, rgba(255,107,0,0.10), transparent 70%),
+      linear-gradient(180deg, #0a0908 0%, #14110f 60%, #0a0908 100%) !important;
     flex-direction: column !important;
     justify-content: flex-start !important;
-    padding-top: 7vh !important;
-    padding-bottom: 4vh !important;
+    padding: 8vh var(--gutter) 4vh !important;
+    position: relative;
+    overflow: hidden !important;
   }
-  /* Hide masthead (replaced by topbar), hide cover-foot (logos in topbar) */
+  /* Hide legacy masthead + foot */
   .cover .masthead { display: none !important; }
   .cover .cover-foot { display: none !important; }
 
-  /* Massive stencil watermark behind everything */
+  /* Diagonal orange slash behind the portrait (editorial flourish) */
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -10%; right: -5%;
+    width: 50%; height: 130%;
+    background: linear-gradient(135deg, transparent 30%, rgba(255,107,0,0.18) 50%, rgba(255,31,107,0.10) 75%, transparent 95%);
+    pointer-events: none;
+    z-index: 1;
+    transform: skewY(-8deg);
+    opacity: 0;
+    animation: pro-slashIn 1.6s var(--ease-out) 0.3s forwards;
+  }
+  @keyframes pro-slashIn { to { opacity: 1; } }
+
+  /* Massive stencil watermark — vertical right side */
   .cover-watermark {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-90deg);
+    right: 1.5vw;
+    transform: translateY(-50%) rotate(-90deg);
     transform-origin: center;
     font-family: var(--display);
     font-weight: 900;
-    font-size: clamp(8rem, 18vw, 22rem);
-    color: rgba(244,236,216,0.022);
+    font-size: clamp(8rem, 16vw, 18rem);
+    color: rgba(244,236,216,0.025);
     letter-spacing: -0.04em;
     white-space: nowrap;
+    pointer-events: none;
+    z-index: 1;
+    user-select: none;
+  }
+  /* Add giant "01" decorative numeral as top-left watermark */
+  .cover::before {
+    content: '01';
+    position: absolute;
+    top: 6vh;
+    left: 38%;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: clamp(20rem, 38vw, 50rem);
+    line-height: 0.8;
+    color: rgba(255,107,0,0.04);
+    letter-spacing: -0.06em;
     pointer-events: none;
     z-index: 0;
     user-select: none;
@@ -3329,52 +3362,65 @@
     to   { opacity: 1; transform: scale(1) rotate(-7deg); }
   }
 
-  /* Hero grid: headline left, portrait right */
+  /* Hero grid: headline left (heavyweight), portrait right (full bleed) */
   .cover .cover-hero {
     flex: 1;
     display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.85fr);
-    align-items: center;
-    gap: 4vw;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 0;
     padding: 0 !important;
-    margin-top: 2vh;
-    z-index: 2;
+    margin: 0 !important;
+    margin-top: 1vh !important;
+    margin-right: calc(var(--gutter) * -1) !important;
+    z-index: 5;
+    position: relative;
   }
 
-  /* Headline tipo magazine (override existing skew approach) */
-  .cover .cover-headline { line-height: 0.86; }
+  /* Headline column: headline + pull quote stacked, content centered vertically */
+  .cover .cover-headline {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 0.84;
+    padding-right: 2vw;
+    position: relative;
+    z-index: 6;
+  }
   .cover .cover-headline .l1 {
     display: block;
     font-family: var(--display);
     font-weight: 900;
-    font-size: clamp(4rem, 11.5vw, 12rem);
+    font-size: clamp(5rem, 13vw, 14rem);
     color: var(--cream);
-    letter-spacing: -0.035em;
+    letter-spacing: -0.04em;
     text-transform: uppercase;
     transform: none !important;
     position: relative;
+    line-height: 0.86;
   }
   .cover .cover-headline .l1::after {
     content: '';
     position: absolute;
     left: 0; bottom: 0.05em;
-    height: 5px;
+    height: 6px;
     width: 0;
     background: var(--orange);
-    animation: pro-drawLine 1.3s var(--ease-out) 1.8s forwards;
+    box-shadow: 0 0 24px rgba(255,107,0,0.5);
+    animation: pro-drawLine 1.4s var(--ease-out) 1.8s forwards;
   }
-  @keyframes pro-drawLine { to { width: 38%; } }
+  @keyframes pro-drawLine { to { width: 50%; } }
 
   .cover .cover-headline .l2 {
     display: block;
     font-family: var(--editorial);
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(4rem, 11vw, 11.5rem);
+    font-size: clamp(5rem, 13.5vw, 15rem);
     color: var(--orange);
-    letter-spacing: -0.025em;
-    line-height: 0.96;
-    margin-top: -0.06em;
+    letter-spacing: -0.035em;
+    line-height: 0.92;
+    margin-top: -0.04em;
     margin-left: 0.04em;
     text-transform: none;
     transform: none !important;
@@ -3382,26 +3428,43 @@
   }
   .cover .cover-headline .l3 {
     display: block;
-    margin-top: 1.2vh;
-    padding-left: 0.5rem;
-    border-left: 3px solid var(--magenta);
+    margin-top: 2vh;
+    max-width: 30em;
     font-family: var(--editorial);
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(1.3rem, 2.2vw, 1.85rem);
+    font-size: clamp(1.4rem, 2.4vw, 2.2rem);
     color: var(--cream);
-    line-height: 1.3;
+    line-height: 1.25;
     opacity: 0;
     transform: translateY(20px);
     animation: pro-blockIn .9s var(--ease-out-soft) 1.5s forwards;
-    letter-spacing: -0.005em;
-    max-width: 22em;
-    font-variation-settings: "opsz" 60;
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 96;
+    position: relative;
+    padding-left: 1.6rem;
+  }
+  .cover .cover-headline .l3::before {
+    content: '"';
+    position: absolute;
+    left: -0.05em; top: -0.55em;
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 4em;
+    line-height: 1;
+    color: var(--magenta);
+    opacity: 0.55;
+    font-variation-settings: "opsz" 144;
   }
   .cover .cover-headline .l3 em {
     color: var(--magenta);
     font-style: italic;
+    font-weight: 500;
     font-variation-settings: "opsz" 96;
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 1.1em;
   }
   /* Hide the legacy b-mark inner span styling — l1/l2 handle the look now */
   .cover .cover-headline .b-mark { color: inherit !important; text-shadow: none !important; }
@@ -3409,54 +3472,64 @@
 
   @keyframes pro-blockIn { to { opacity: 1; transform: translateY(0); } }
 
-  /* Portrait — frame editorial con motion entry */
+  /* Portrait — full-bleed dramatic editorial portrait, fills right column */
   .cover .cover-portrait {
     width: 100%;
-    max-width: 380px;
-    aspect-ratio: 3/4;
-    background: var(--ink) url('betano-deck-assets/pepe-2.webp') center 22%/cover no-repeat;
+    max-width: none;
+    height: 100%;
+    aspect-ratio: auto;
+    background:
+      linear-gradient(180deg, transparent 50%, rgba(20,17,15,0.7) 100%),
+      url('betano-deck-assets/pepe-2.webp') center 18%/cover no-repeat,
+      var(--ink);
     border: none;
     box-shadow: none;
     position: relative;
-    filter: contrast(1.05) saturate(0.78) brightness(0.92);
+    filter: contrast(1.15) saturate(0.45) brightness(0.85) sepia(0.18);
     opacity: 0;
     clip-path: inset(100% 0 0 0);
-    animation: pro-portraitIn 1.4s var(--ease-out) 1s forwards;
-    justify-self: end;
+    animation: pro-portraitIn 1.6s var(--ease-out) 0.8s forwards;
+    justify-self: stretch;
+    overflow: visible;
   }
   @keyframes pro-portraitIn {
     to { opacity: 1; clip-path: inset(0 0 0 0); }
   }
+  /* Halftone dots overlay — moiré editorial */
   .cover .cover-portrait::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 50%, rgba(255,107,0,0.28) 100%);
+    background:
+      radial-gradient(circle at center, rgba(20,17,15,0) 60%, rgba(20,17,15,0.4) 100%),
+      radial-gradient(rgba(255,107,0,0.12) 1.2px, transparent 1.6px);
+    background-size: cover, 12px 12px;
+    background-position: center, 0 0;
     mix-blend-mode: multiply;
     pointer-events: none;
   }
+  /* Top-right corner mark (editorial registration) */
   .cover .cover-portrait::after {
     content: '';
     position: absolute;
-    inset: -1px;
-    border-top: 1px solid var(--orange);
-    border-right: 1px solid var(--orange);
+    inset: auto;
+    width: 32px; height: 32px;
+    top: 0; right: 0;
+    border-top: 2px solid var(--orange);
+    border-right: 2px solid var(--orange);
     pointer-events: none;
-    opacity: 0.7;
+    opacity: 0.8;
     animation: none;
     background: none;
     color: inherit;
     font: inherit;
-    /* hide legacy "NUESTRO ENVIADO" tag from old CSS */
-    width: 28px; height: 28px;
-    top: -1px; right: -1px; bottom: auto; left: auto;
     padding: 0;
     text-indent: -9999px;
   }
   .cover .cover-portrait .portrait-tag {
     position: absolute;
-    bottom: -0.7rem;
-    right: -0.7rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
     background: var(--orange);
     color: var(--black);
     font-family: var(--mono);
@@ -3464,80 +3537,102 @@
     font-size: 0.55rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    padding: 0.5rem 0.75rem;
+    padding: 0.7rem 0.95rem;
     z-index: 3;
     line-height: 1.4;
-    text-align: right;
     opacity: 0;
-    animation: pro-blockIn .8s var(--ease-out-soft) 2s forwards;
+    animation: pro-blockIn .8s var(--ease-out-soft) 2.1s forwards;
+    box-shadow: 12px 12px 0 -1px rgba(20,17,15,0.6);
   }
   .cover .cover-portrait .portrait-tag strong {
     display: block;
     font-family: var(--display);
     font-style: italic;
-    font-size: 1rem;
-    letter-spacing: 0;
-    text-transform: none;
+    font-size: 1.45rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
     color: var(--black);
-    margin-top: 0.1rem;
+    margin-top: 0.15rem;
     font-weight: 900;
+    line-height: 1;
   }
 
-  /* Claim bar — magazine tagline strip */
+  /* Claim bar — bloque editorial sólido, no strip */
   .cover .cover-claim-bar {
     position: relative;
     z-index: 5;
-    border-top: 1px solid var(--rule-strong);
-    border-bottom: 1px solid var(--rule);
-    padding: 1.4vh 0 1.2vh;
+    margin: 2.5vh calc(var(--gutter) * -1) 0 0;
+    margin-left: 0;
+    background: linear-gradient(90deg, var(--orange) 0%, var(--orange-deep) 100%);
+    color: var(--ink);
+    padding: 1.6vh 2.5rem 1.5vh 2rem;
     display: grid;
     grid-template-columns: auto 1fr auto;
     gap: 2rem;
     align-items: center;
-    margin-top: 2vh;
     opacity: 0;
-    transform: translateY(15px);
-    animation: pro-blockIn .9s var(--ease-out-soft) 1.7s forwards;
+    transform: translateX(-30px);
+    animation: pro-claimIn 1s var(--ease-out-soft) 1.9s forwards;
+    overflow: hidden;
   }
+  .cover .cover-claim-bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(20,17,15,0.18) 1px, transparent 1.4px);
+    background-size: 14px 14px;
+    mix-blend-mode: multiply;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  @keyframes pro-claimIn { to { opacity: 1; transform: translateX(0); } }
   .cover .claim-eyebrow {
     font-family: var(--mono);
     font-size: 0.55rem;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--orange);
-    font-weight: 500;
+    color: var(--ink);
+    font-weight: 700;
     white-space: nowrap;
+    opacity: 0.7;
+    z-index: 2;
+    position: relative;
   }
   .cover .cover-claim {
     font-family: var(--display);
-    font-weight: 800;
+    font-weight: 900;
     font-style: italic;
-    font-size: clamp(1.2rem, 1.8vw, 1.95rem);
-    color: var(--cream);
-    letter-spacing: -0.005em;
+    font-size: clamp(1.5rem, 2.4vw, 2.5rem);
+    color: var(--ink);
+    letter-spacing: -0.015em;
     text-transform: uppercase;
     text-align: center;
+    line-height: 1;
+    z-index: 2;
+    position: relative;
   }
   .cover .cover-claim em {
-    color: var(--orange);
+    color: var(--cream);
     font-family: var(--editorial);
     font-style: italic;
-    font-weight: 300;
+    font-weight: 400;
     text-transform: none;
-    font-size: 1.1em;
-    letter-spacing: -0.01em;
+    font-size: 1.05em;
+    letter-spacing: -0.015em;
   }
   .cover .claim-meta {
     font-family: var(--mono);
-    font-size: 0.6rem;
+    font-size: 0.62rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--cream);
-    opacity: 0.55;
-    font-weight: 500;
+    color: var(--ink);
+    opacity: 0.78;
+    font-weight: 600;
     white-space: nowrap;
+    z-index: 2;
+    position: relative;
   }
-  .cover .claim-meta .dot { color: var(--orange); margin: 0 0.4em; opacity: 1; }
+  .cover .claim-meta .dot { margin: 0 0.4em; opacity: 1; }
 
   /* Talent ticker at bottom of cover */
   .cover-ticker {
