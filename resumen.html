@@ -93,6 +93,105 @@
   .slide-num::before { content: '— Pg. '; color: var(--cream); opacity: 0.5; font-style: normal; font-weight: 500; }
   .slide-num::after { content: ' / 2'; color: var(--cream); opacity: 0.5; font-style: normal; font-weight: 500; }
 
+  .brand-lockup {
+    position: absolute;
+    top: 2.4vh;
+    right: 5vw;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .brand-lockup .lockup-label {
+    font-family: var(--body);
+    font-size: 0.55rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.5;
+    font-weight: 700;
+    margin-right: 0.2rem;
+  }
+  .brand-lockup img.logo-ramped { height: 22px; width: auto; opacity: 0.92; filter: brightness(0) invert(0.92); }
+  .brand-lockup img.logo-betano { height: 16px; width: auto; opacity: 0.92; filter: brightness(0) invert(0.92); }
+  .brand-lockup .lockup-x {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--orange);
+    opacity: 0.7;
+    margin: 0 0.05rem;
+  }
+  .invest .brand-lockup img.logo-ramped,
+  .invest .brand-lockup img.logo-betano { filter: brightness(0) invert(0.92); }
+  .concept .brand-lockup img.logo-ramped,
+  .concept .brand-lockup img.logo-betano { filter: brightness(0) invert(0.92); }
+
+  .exec-headline {
+    grid-column: 1 / -1;
+    margin-top: 0.6rem;
+    padding: 1rem 1.3rem;
+    background: linear-gradient(90deg, rgba(255,107,0,0.15) 0%, rgba(255,31,107,0.1) 100%);
+    border: 1px solid rgba(255,107,0,0.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .exec-headline .eh-label {
+    font-family: var(--body);
+    font-size: 0.6rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .exec-headline .eh-numbers {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: clamp(1.05rem, 1.8vw, 1.5rem);
+    color: var(--cream);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    flex: 1;
+    text-align: center;
+    min-width: 0;
+  }
+  .exec-headline .eh-numbers .plus {
+    color: var(--orange);
+    font-weight: 700;
+    margin: 0 0.25em;
+    font-style: normal;
+    font-family: var(--body);
+  }
+  .exec-headline .eh-numbers .fee {
+    color: var(--magenta);
+    font-style: normal;
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: 0.8em;
+    margin-left: 0.5em;
+  }
+  .exec-headline .eh-deadline {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 0.8rem;
+    color: var(--cream);
+    opacity: 0.85;
+    text-align: right;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+  .exec-headline .eh-deadline strong {
+    font-family: var(--body);
+    font-style: normal;
+    color: var(--orange);
+    font-weight: 700;
+  }
+
   /* ═══════════ SLIDE 1 — CONCEPTO ═══════════ */
   .concept {
     background:
@@ -701,9 +800,16 @@
 
   /* ═══════════ Mobile ═══════════ */
   @media (max-width: 880px) {
-    .slide { padding: 4vh 6vw 5vh; min-height: 100vh; }
-    .slide-tag { font-size: 0.6rem; letter-spacing: 0.25em; top: 2vh; left: 6vw; }
+    .slide { padding: 7vh 6vw 5vh; min-height: 100vh; }
+    .slide-tag { font-size: 0.55rem; letter-spacing: 0.2em; top: 1.6vh; left: 6vw; max-width: 60vw; line-height: 1.3; }
     .slide-num { bottom: 2vh; right: 6vw; font-size: 0.85rem; }
+    .brand-lockup { top: 1.3vh; right: 6vw; gap: 0.5rem; }
+    .brand-lockup .lockup-label { display: none; }
+    .brand-lockup img.logo-ramped { height: 16px; }
+    .brand-lockup img.logo-betano { height: 12px; }
+    .exec-headline { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 0.85rem 1rem; }
+    .exec-headline .eh-numbers { text-align: left; font-size: 1rem; }
+    .exec-headline .eh-deadline { text-align: left; }
 
     .concept-head { grid-template-columns: 1fr; gap: 1rem; align-items: start; }
     .concept-head .credit { text-align: left; }
@@ -725,7 +831,13 @@
 
 <!-- ════════ SLIDE 1 — CONCEPTO + FORMATO ════════ -->
 <section class="slide concept">
-  <div class="slide-tag">Betano × Ramped <span class="pipe">/</span> El Lado B del Mundial · Resumen</div>
+  <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> Resumen ejecutivo</div>
+  <div class="brand-lockup">
+    <span class="lockup-label">Presentado por</span>
+    <img src="betano-deck-assets/ramped-logo-trim.png" alt="Ramped" class="logo-ramped">
+    <span class="lockup-x">×</span>
+    <img src="betano-deck-assets/betano-logo.png" alt="Betano" class="logo-betano">
+  </div>
 
   <div class="concept-head">
     <h1>El Lado B<br><em>del Mundial.</em></h1>
@@ -766,17 +878,18 @@
     </div>
   </div>
 
-  <div class="concept-foot">
-    <div class="ft-label">Inversión · Headline</div>
-    <p><strong>USD 65K core</strong> + <strong>USD 15-20K cobertura TV/Stream</strong> + 15% fee Ramped. Mundial arranca <strong>11 jun 2026</strong> · cierre de producción ~5 semanas desde la firma. Detalle en slide 02.</p>
-  </div>
-
   <div class="slide-num">01</div>
 </section>
 
 <!-- ════════ SLIDE 2 — INVERSIÓN ════════ -->
 <section class="slide invest">
-  <div class="slide-tag">Betano × Ramped <span class="pipe">/</span> El Lado B del Mundial · Inversión</div>
+  <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> Inversión</div>
+  <div class="brand-lockup">
+    <span class="lockup-label">Presentado por</span>
+    <img src="betano-deck-assets/ramped-logo-trim.png" alt="Ramped" class="logo-ramped">
+    <span class="lockup-x">×</span>
+    <img src="betano-deck-assets/betano-logo.png" alt="Betano" class="logo-betano">
+  </div>
 
   <div class="invest-head">
     <h1>La <em>propuesta.</em></h1>
@@ -815,6 +928,15 @@
     <div class="invest-foot">
       <div class="fee">Fee Ramped · 15% del total de la acción <em>(no incluido — se factura aparte)</em></div>
       <div class="deadline">Mundial arranca <strong>11 de junio de 2026</strong>. Cierre de producción: ~5 semanas desde la firma.</div>
+    </div>
+
+    <div class="exec-headline">
+      <div class="eh-label">Bottom line</div>
+      <div class="eh-numbers">
+        USD 65K core <span class="plus">+</span> USD 15-20K cobertura TV/Stream
+        <span class="fee">+ 15% Ramped</span>
+      </div>
+      <div class="eh-deadline">Decisión necesaria <strong>esta semana</strong> · firma + kick off</div>
     </div>
   </div>
 
