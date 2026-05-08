@@ -3245,6 +3245,380 @@
     }
   }
 
+  /* ═══════════════════════════════════════════════════════════════════════════
+     ▰▰▰ COVER SLIDE — PRO REBUILD ▰▰▰
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Override existing cover bg with denser atmosphere */
+  .cover {
+    background:
+      radial-gradient(1200px 800px at 78% 22%, rgba(255,31,107,0.15), transparent 55%),
+      radial-gradient(900px 700px at 8% 92%, rgba(255,107,0,0.13), transparent 60%),
+      radial-gradient(700px 700px at 50% 50%, rgba(40,34,29,0.45), transparent 70%),
+      var(--black) !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    padding-top: 7vh !important;
+    padding-bottom: 4vh !important;
+  }
+  /* Hide masthead (replaced by topbar), hide cover-foot (logos in topbar) */
+  .cover .masthead { display: none !important; }
+  .cover .cover-foot { display: none !important; }
+
+  /* Massive stencil watermark behind everything */
+  .cover-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    transform-origin: center;
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(8rem, 18vw, 22rem);
+    color: rgba(244,236,216,0.022);
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+  }
+
+  /* Edition stamp circle — top-right corner */
+  .cover-edition {
+    position: absolute;
+    top: 9vh;
+    right: 1.4vw;
+    width: 88px; height: 88px;
+    border: 1px solid var(--orange);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    color: var(--orange);
+    font-family: var(--mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.4;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(.85) rotate(-10deg);
+    animation: pro-stampIn 1.2s var(--ease-out) 1.6s forwards;
+  }
+  .cover-edition::before, .cover-edition::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--orange);
+    border-radius: 50%;
+    opacity: 0.4;
+  }
+  .cover-edition::after { inset: 9px; opacity: 0.18; }
+  .cover-edition .ed-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--orange);
+    letter-spacing: 0;
+    margin: 0.15rem 0;
+  }
+  @keyframes pro-stampIn {
+    from { opacity: 0; transform: scale(.7) rotate(0deg); }
+    to   { opacity: 1; transform: scale(1) rotate(-7deg); }
+  }
+
+  /* Hero grid: headline left, portrait right */
+  .cover .cover-hero {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.85fr);
+    align-items: center;
+    gap: 4vw;
+    padding: 0 !important;
+    margin-top: 2vh;
+    z-index: 2;
+  }
+
+  /* Headline tipo magazine (override existing skew approach) */
+  .cover .cover-headline { line-height: 0.86; }
+  .cover .cover-headline .l1 {
+    display: block;
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(4rem, 11.5vw, 12rem);
+    color: var(--cream);
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+    transform: none !important;
+    position: relative;
+  }
+  .cover .cover-headline .l1::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0.05em;
+    height: 5px;
+    width: 0;
+    background: var(--orange);
+    animation: pro-drawLine 1.3s var(--ease-out) 1.8s forwards;
+  }
+  @keyframes pro-drawLine { to { width: 38%; } }
+
+  .cover .cover-headline .l2 {
+    display: block;
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(4rem, 11vw, 11.5rem);
+    color: var(--orange);
+    letter-spacing: -0.025em;
+    line-height: 0.96;
+    margin-top: -0.06em;
+    margin-left: 0.04em;
+    text-transform: none;
+    transform: none !important;
+    font-variation-settings: "opsz" 144;
+  }
+  .cover .cover-headline .l3 {
+    display: block;
+    margin-top: 1.2vh;
+    padding-left: 0.5rem;
+    border-left: 3px solid var(--magenta);
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.3rem, 2.2vw, 1.85rem);
+    color: var(--cream);
+    line-height: 1.3;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: pro-blockIn .9s var(--ease-out-soft) 1.5s forwards;
+    letter-spacing: -0.005em;
+    max-width: 22em;
+    font-variation-settings: "opsz" 60;
+  }
+  .cover .cover-headline .l3 em {
+    color: var(--magenta);
+    font-style: italic;
+    font-variation-settings: "opsz" 96;
+  }
+  /* Hide the legacy b-mark inner span styling — l1/l2 handle the look now */
+  .cover .cover-headline .b-mark { color: inherit !important; text-shadow: none !important; }
+  .cover .cover-headline .skew { transform: none !important; display: inline; }
+
+  @keyframes pro-blockIn { to { opacity: 1; transform: translateY(0); } }
+
+  /* Portrait — frame editorial con motion entry */
+  .cover .cover-portrait {
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 3/4;
+    background: var(--ink) url('betano-deck-assets/pepe-2.webp') center 22%/cover no-repeat;
+    border: none;
+    box-shadow: none;
+    position: relative;
+    filter: contrast(1.05) saturate(0.78) brightness(0.92);
+    opacity: 0;
+    clip-path: inset(100% 0 0 0);
+    animation: pro-portraitIn 1.4s var(--ease-out) 1s forwards;
+    justify-self: end;
+  }
+  @keyframes pro-portraitIn {
+    to { opacity: 1; clip-path: inset(0 0 0 0); }
+  }
+  .cover .cover-portrait::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(255,107,0,0.28) 100%);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+  .cover .cover-portrait::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-top: 1px solid var(--orange);
+    border-right: 1px solid var(--orange);
+    pointer-events: none;
+    opacity: 0.7;
+    animation: none;
+    background: none;
+    color: inherit;
+    font: inherit;
+    /* hide legacy "NUESTRO ENVIADO" tag from old CSS */
+    width: 28px; height: 28px;
+    top: -1px; right: -1px; bottom: auto; left: auto;
+    padding: 0;
+    text-indent: -9999px;
+  }
+  .cover .cover-portrait .portrait-tag {
+    position: absolute;
+    bottom: -0.7rem;
+    right: -0.7rem;
+    background: var(--orange);
+    color: var(--black);
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 0.55rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.5rem 0.75rem;
+    z-index: 3;
+    line-height: 1.4;
+    text-align: right;
+    opacity: 0;
+    animation: pro-blockIn .8s var(--ease-out-soft) 2s forwards;
+  }
+  .cover .cover-portrait .portrait-tag strong {
+    display: block;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1rem;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--black);
+    margin-top: 0.1rem;
+    font-weight: 900;
+  }
+
+  /* Claim bar — magazine tagline strip */
+  .cover .cover-claim-bar {
+    position: relative;
+    z-index: 5;
+    border-top: 1px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule);
+    padding: 1.4vh 0 1.2vh;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 2vh;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: pro-blockIn .9s var(--ease-out-soft) 1.7s forwards;
+  }
+  .cover .claim-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .cover .cover-claim {
+    font-family: var(--display);
+    font-weight: 800;
+    font-style: italic;
+    font-size: clamp(1.2rem, 1.8vw, 1.95rem);
+    color: var(--cream);
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .cover .cover-claim em {
+    color: var(--orange);
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    text-transform: none;
+    font-size: 1.1em;
+    letter-spacing: -0.01em;
+  }
+  .cover .claim-meta {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.55;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .cover .claim-meta .dot { color: var(--orange); margin: 0 0.4em; opacity: 1; }
+
+  /* Talent ticker at bottom of cover */
+  .cover-ticker {
+    position: relative;
+    z-index: 3;
+    margin: 1vh calc(var(--gutter) * -1) 0;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: linear-gradient(90deg, rgba(255,107,0,0.04), rgba(255,31,107,0.04));
+    overflow: hidden;
+  }
+  .cover-ticker::before, .cover-ticker::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .cover-ticker::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--black), transparent);
+  }
+  .cover-ticker::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--black), transparent);
+  }
+  .cover-ticker-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 2.5rem;
+    white-space: nowrap;
+    animation: pro-tickerScroll 38s linear infinite;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--cream);
+    will-change: transform;
+  }
+  .cover-ticker-track .t-name { transition: color .25s; }
+  .cover-ticker-track .t-name em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    text-transform: none;
+    color: var(--gold);
+    margin-left: 0.4em;
+    letter-spacing: 0;
+    font-size: 0.92em;
+  }
+  .cover-ticker-track .t-star {
+    color: var(--magenta);
+    font-size: 0.7em;
+    opacity: 0.7;
+  }
+  @keyframes pro-tickerScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* Hide custom slide-num on cover (using topbar pager instead) */
+  .cover .slide-num { display: none !important; }
+
+  /* Cover responsive */
+  @media (max-width: 1024px) {
+    .cover .cover-hero { grid-template-columns: 1fr; gap: 2.5vh; }
+    .cover .cover-portrait { max-width: 280px; justify-self: start; }
+  }
+  @media (max-width: 720px) {
+    .cover-edition { display: none; }
+    .cover .cover-headline .l1 { font-size: clamp(2.6rem, 13vw, 5rem); }
+    .cover .cover-headline .l2 { font-size: clamp(2.6rem, 12vw, 4.5rem); }
+    .cover .cover-headline .l3 { font-size: 1rem; }
+    .cover .cover-claim-bar { grid-template-columns: 1fr; gap: 0.6rem; text-align: left; }
+    .cover .cover-claim { text-align: left; }
+    .cover-ticker-track { font-size: 0.72rem; gap: 1.5rem; }
+  }
+
   /* ▰▰▰ END PRO LAYER ▰▰▰ */
 </style>
 </head>
@@ -3282,32 +3656,54 @@
 
 <!-- ════════ SLIDE 01 — COVER ════════ -->
 <section class="slide cover" id="s1">
-  <div class="masthead">
-    <div class="masthead-left">
-      <strong>Betano × Ramped</strong>
-      Edición especial Mundial 2026 · USA
-    </div>
-    <div class="masthead-mid">/ Issue Nº 01</div>
-    <div class="masthead-right">Mundial 2026<br>USA</div>
+
+  <!-- Background watermark stencil -->
+  <div class="cover-watermark" aria-hidden="true">MUNDIAL 2026</div>
+
+  <!-- Edition stamp -->
+  <div class="cover-edition" aria-hidden="true">
+    <span class="ed-line">El Lado B</span>
+    <span class="ed-num">Nº 01</span>
+    <span class="ed-line">USA · 2026</span>
   </div>
 
   <div class="cover-hero">
     <div class="cover-headline">
-      <span class="l1"><span class="skew">EL LADO</span> <span class="b-mark skew">B</span></span>
-      <span class="l2 skew">DEL MUNDIAL</span>
-      <span class="l3">— el otro Mundial empieza acá.</span>
+      <span class="l1" data-split>EL LADO B</span>
+      <span class="l2" data-split>del Mundial.</span>
+      <span class="l3" data-reveal>El Mundial<br><em>desde adentro.</em></span>
     </div>
-    <div class="cover-portrait" aria-label="Pepe Ochoa, enviado especial"></div>
+    <div class="cover-portrait" aria-label="Pepe Ochoa, enviado especial">
+      <span class="portrait-tag">— Nuestro enviado<strong>Pepe Ochoa</strong></span>
+    </div>
   </div>
 
   <div class="cover-claim-bar">
+    <div class="claim-eyebrow">— Tagline editorial</div>
     <div class="cover-claim">Donde la <em>confianza</em> también juega</div>
+    <div class="claim-meta">Betano <span class="dot">·</span> Mundial FIFA 2026</div>
   </div>
 
-  <div class="cover-foot">
-    <span class="ramped-mark" aria-label="Ramped"></span>
-    <span class="betano-mark" aria-label="Betano"></span>
+  <!-- Talent ticker -->
+  <div class="cover-ticker" aria-hidden="true">
+    <div class="cover-ticker-track">
+      <span class="t-name">Celia Messi <em>familia</em></span><span class="t-star">✦</span>
+      <span class="t-name">La Chola Simeone <em>familia</em></span><span class="t-star">✦</span>
+      <span class="t-name">Oriana Sabatini <em>pareja</em></span><span class="t-star">✦</span>
+      <span class="t-name">Valu Cervantes <em>pareja</em></span><span class="t-star">✦</span>
+      <span class="t-name">Camila Galante <em>pareja</em></span><span class="t-star">✦</span>
+      <span class="t-name">Karen Cavallari <em>pareja</em></span><span class="t-star">✦</span>
+      <span class="t-name">Pepe Ochoa <em>host</em></span><span class="t-star">✦</span>
+      <span class="t-name">Celia Messi <em>familia</em></span><span class="t-star">✦</span>
+      <span class="t-name">La Chola Simeone <em>familia</em></span><span class="t-star">✦</span>
+      <span class="t-name">Oriana Sabatini <em>pareja</em></span><span class="t-star">✦</span>
+      <span class="t-name">Valu Cervantes <em>pareja</em></span><span class="t-star">✦</span>
+      <span class="t-name">Camila Galante <em>pareja</em></span><span class="t-star">✦</span>
+      <span class="t-name">Karen Cavallari <em>pareja</em></span><span class="t-star">✦</span>
+      <span class="t-name">Pepe Ochoa <em>host</em></span><span class="t-star">✦</span>
+    </div>
   </div>
+
   <div class="slide-num">01</div>
 </section>
 
