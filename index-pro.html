@@ -1,0 +1,3794 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<title>El Lado B del Mundial · Betano × Ramped · Issue Nº01 · PRO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,800&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0908;
+    --ink: #14110f;
+    --orange: #ff6b00;
+    --orange-deep: #d04a00;
+    --red: #ff2d2d;
+    --magenta: #ff1f6b;
+    --magenta-deep: #b50d4d;
+    --cream: #f4ecd8;
+    --cream-warm: #ebe1c8;
+    --gold: #c9a85a;
+    --gold-deep: #9d7e3a;
+    --paper: #e8dfc8;
+    --bone: #d8cfb8;
+
+    --display: 'Big Shoulders Display', 'Helvetica Neue', sans-serif;
+    --editorial: 'Fraunces', 'Times New Roman', serif;
+    --body: 'Manrope', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--black);
+    font-family: var(--body);
+    color: var(--cream);
+    scroll-snap-type: y proximity;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    cursor: none;
+  }
+  body::selection, ::selection { background: var(--orange); color: var(--black); }
+
+  /* Global grain texture overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.08;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .cross-deck-link {
+    position: absolute;
+    top: 5.5vh;
+    right: 5vw;
+    z-index: 11;
+    font-family: var(--body);
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--cream);
+    opacity: 0.55;
+    text-decoration: none;
+    padding: 0 0 0.15rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(244,236,216,0.3);
+    transition: opacity 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .cover .cross-deck-link, .closing .cross-deck-link, .idea .cross-deck-link, .plan .cross-deck-link, .team .cross-deck-link, .rec .cross-deck-link {
+    color: var(--ink);
+    border-bottom-color: rgba(20,17,15,0.3);
+  }
+  .cross-deck-link::before { content: '→ '; color: var(--orange); opacity: 1; margin-right: 0.2em; }
+  .cross-deck-link:hover {
+    opacity: 1;
+    color: var(--orange);
+    border-bottom-color: var(--orange);
+  }
+  @media (max-width: 880px) {
+    .cross-deck-link {
+      top: auto;
+      bottom: 1.5vh;
+      right: 6vw;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+    }
+  }
+
+  /* ───── Custom cursor ───── */
+  .cursor-dot, .cursor-ring {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    top: 0; left: 0;
+    transition: transform 0.08s ease-out;
+    mix-blend-mode: difference;
+  }
+  .cursor-dot {
+    width: 6px; height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+  .cursor-ring {
+    width: 32px; height: 32px;
+    border: 1.5px solid var(--cream);
+    border-radius: 50%;
+    transition: transform 0.18s ease-out, width 0.2s, height 0.2s;
+  }
+
+  /* ───── Slide foundation ───── */
+  .slide {
+    width: 100vw;
+    height: 100vh;
+    min-height: 640px;
+    scroll-snap-align: start;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    padding: 5.5vh 5vw 4vh;
+  }
+
+  .slide-tag {
+    position: absolute;
+    top: 3vh;
+    left: 5vw;
+    font-family: var(--body);
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.55;
+    z-index: 10;
+    font-weight: 600;
+  }
+  .slide-tag .pipe { color: var(--orange); margin: 0 0.6em; }
+
+  .slide-num {
+    position: absolute;
+    bottom: 1.2vh;
+    right: 5vw;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    color: var(--orange);
+    z-index: 10;
+    padding: 0.25rem 0.55rem;
+    background: rgba(20,17,15,0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .slide-num::before { content: '— Pg. '; color: var(--cream); opacity: 0.5; font-style: normal; font-weight: 500; }
+  .slide-num::after { content: ' / 14'; color: var(--cream); opacity: 0.5; font-style: normal; font-weight: 500; }
+
+  .colophon {
+    position: absolute;
+    bottom: 3vh;
+    left: 5vw;
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.4;
+    z-index: 10;
+    font-weight: 500;
+  }
+
+  /* Logos */
+  .ramped-mark {
+    width: 130px;
+    height: 32px;
+    background: url('betano-deck-assets/ramped-logo-trim.png') center/contain no-repeat;
+    display: inline-block;
+  }
+  .betano-mark {
+    width: 110px;
+    height: 32px;
+    background: url('betano-deck-assets/betano-logo.png') center/contain no-repeat;
+    display: inline-block;
+  }
+  .deck-logo {
+    height: 26px;
+    width: auto;
+    opacity: 0.95;
+  }
+
+  /* Reusable bolt icon */
+  .bolt-svg {
+    width: 1em; height: 1.4em;
+    display: inline-block;
+    vertical-align: -0.2em;
+    fill: currentColor;
+  }
+
+  /* Italic skew helper (Betano-style) */
+  .skew { display: inline-block; transform: skewX(-9deg); transform-origin: bottom left; }
+  .skew-small { display: inline-block; transform: skewX(-7deg); }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 01 — COVER (magazine masthead)
+     ════════════════════════════════════════════════════════ */
+  .cover {
+    background:
+      radial-gradient(ellipse 70% 50% at 70% 40%, rgba(255,107,0,0.18), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(255,31,107,0.12), transparent 70%),
+      var(--black);
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle 1.5px at 20% 30%, rgba(255,200,140,0.5), transparent),
+      radial-gradient(circle 1px at 70% 60%, rgba(255,180,100,0.4), transparent),
+      radial-gradient(circle 1.2px at 85% 25%, rgba(255,160,80,0.5), transparent),
+      radial-gradient(circle 1px at 35% 75%, rgba(255,200,120,0.4), transparent),
+      radial-gradient(circle 0.8px at 55% 45%, rgba(255,210,140,0.6), transparent);
+    pointer-events: none;
+  }
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 1vh;
+    border-bottom: 1px solid rgba(244,236,216,0.18);
+    padding-bottom: 1.5vh;
+    position: relative;
+    z-index: 5;
+  }
+  .masthead-left {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--cream);
+    opacity: 0.7;
+    letter-spacing: 0.04em;
+  }
+  .masthead-left strong { color: var(--orange); font-weight: 600; font-style: normal; letter-spacing: 0.15em; text-transform: uppercase; font-family: var(--body); display: block; font-size: 0.75rem; margin-bottom: 0.3em; }
+  .masthead-mid {
+    font-family: var(--display);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+  }
+  .masthead-right {
+    font-family: var(--body);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.7;
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .cover-hero {
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 4vw;
+    padding: 4vh 0;
+  }
+  .cover-headline {
+    line-height: 0.84;
+  }
+  .cover-headline .l1 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(4rem, 11vw, 12rem);
+    color: var(--cream);
+    letter-spacing: -0.025em;
+    display: block;
+  }
+  .cover-headline .l2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-style: italic;
+    font-size: clamp(5rem, 14vw, 14.5rem);
+    color: var(--orange);
+    letter-spacing: -0.03em;
+    display: block;
+    margin-top: -0.05em;
+  }
+  .cover-headline .l3 {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 4rem);
+    color: var(--cream);
+    letter-spacing: -0.01em;
+    display: block;
+    margin-top: 0.1em;
+    opacity: 0.92;
+  }
+  .cover-headline .b-mark {
+    display: inline-block;
+    color: var(--magenta);
+    text-shadow: 0 0 30px rgba(255,31,107,0.4);
+  }
+  .cover-portrait {
+    width: 22vw;
+    max-width: 320px;
+    aspect-ratio: 3/4;
+    background: var(--ink) url('betano-deck-assets/pepe-2.webp') center 22%/cover no-repeat;
+    border: 1px solid var(--orange);
+    position: relative;
+    filter: contrast(1.05) saturate(0.85);
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,0.4),
+      40px 40px 0 -1px rgba(255,107,0,0.18);
+  }
+  .cover-portrait::after {
+    content: 'NUESTRO ENVIADO';
+    position: absolute;
+    bottom: -0.6rem;
+    right: -0.6rem;
+    background: var(--orange);
+    color: var(--black);
+    font-family: var(--body);
+    font-weight: 800;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    padding: 0.5rem 0.8rem;
+  }
+  .cover-claim-bar {
+    position: relative;
+    z-index: 5;
+    border-top: 1px solid rgba(244,236,216,0.18);
+    border-bottom: 1px solid rgba(244,236,216,0.18);
+    padding: 1.5vh 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cover-claim {
+    font-family: var(--display);
+    font-weight: 800;
+    font-style: italic;
+    font-size: clamp(1.1rem, 1.6vw, 1.7rem);
+    color: var(--orange);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .cover-claim em {
+    color: var(--cream);
+    font-style: italic;
+    font-weight: 400;
+    font-family: var(--editorial);
+    text-transform: none;
+    letter-spacing: -0.01em;
+  }
+  .cover-stamp {
+    font-family: var(--body);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.6;
+    font-weight: 600;
+  }
+  .cover-stamp .ed { color: var(--orange); margin-right: 0.5em; }
+
+  .cover-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5vh;
+    padding-right: 5vw;
+    position: relative;
+    z-index: 5;
+  }
+  .cover-foot .ramped-mark { width: 170px; height: 42px; }
+  .cover-foot .betano-mark { width: 140px; height: 42px; }
+  .cover .slide-num { right: auto; left: 50%; transform: translateX(-50%); bottom: 1.5vh; }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 02 — LA IDEA (editorial spread)
+     ════════════════════════════════════════════════════════ */
+  .idea {
+    background: var(--cream);
+    color: var(--ink);
+    padding: 5.5vh 6vw 4vh;
+  }
+  .idea-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 4vw;
+    width: 100%;
+    align-items: stretch;
+  }
+  .idea-left { display: flex; flex-direction: column; }
+  .idea-eyebrow {
+    font-family: var(--body);
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--orange-deep);
+    font-weight: 800;
+    margin-bottom: 1.5vh;
+  }
+  .idea-eyebrow::before {
+    content: '01 ';
+    color: var(--ink);
+    opacity: 0.4;
+    margin-right: 0.5em;
+  }
+  .idea h1 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(4rem, 9vw, 9rem);
+    line-height: 0.86;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 0.2em;
+  }
+  .idea h1 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange-deep);
+    font-size: 0.85em;
+  }
+  .idea-body {
+    margin-top: auto;
+    columns: 2;
+    column-gap: 2.5rem;
+    column-rule: 1px solid rgba(20,17,15,0.12);
+    font-family: var(--body);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: rgba(20,17,15,0.85);
+  }
+  .idea-body p { margin-bottom: 1rem; break-inside: avoid; }
+  .idea-body p:first-child::first-letter {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 4.2em;
+    line-height: 0.92;
+    float: left;
+    margin: 0.05em 0.1em -0.1em 0;
+    color: var(--orange-deep);
+  }
+  .idea-body strong { color: var(--ink); font-weight: 700; }
+
+  .idea-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid rgba(20,17,15,0.15);
+    padding-left: 3vw;
+  }
+  .idea-pullquote {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.6rem, 2.6vw, 2.8rem);
+    line-height: 1.15;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+    position: relative;
+  }
+  .idea-pullquote::before {
+    content: '"';
+    font-family: var(--editorial);
+    font-size: 8rem;
+    line-height: 0.6;
+    position: absolute;
+    top: -0.3em;
+    left: -0.15em;
+    color: var(--orange);
+    opacity: 0.3;
+  }
+  .idea-pullquote em {
+    color: var(--orange-deep);
+    font-style: italic;
+  }
+  .idea-attr {
+    margin-top: 2rem;
+    font-family: var(--body);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.55;
+    font-weight: 700;
+  }
+  .idea-attr::before {
+    content: '— ';
+    color: var(--orange-deep);
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 03 — POR QUÉ FUNCIONA (5 razones magazine listicle)
+     ════════════════════════════════════════════════════════ */
+  .why {
+    background: var(--ink);
+    color: var(--cream);
+    flex-direction: column;
+    padding: 5.5vh 5vw 4vh;
+  }
+  .why::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 50%; height: 100%;
+    background: linear-gradient(135deg, transparent 50%, rgba(255,107,0,0.06) 50%);
+  }
+  .why-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(244,236,216,0.2);
+    padding-bottom: 2vh;
+    margin-bottom: 4vh;
+    position: relative;
+    z-index: 2;
+  }
+  .why-head h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(3rem, 6.5vw, 6.5rem);
+    line-height: 0.92;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+  }
+  .why-head h2 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange);
+  }
+  .why-head .deck-credit {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--cream);
+    opacity: 0.6;
+    text-align: right;
+    line-height: 1.4;
+  }
+  .why-head .deck-credit strong { color: var(--orange); font-style: normal; font-family: var(--body); font-weight: 700; letter-spacing: 0.05em; }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2vw;
+    flex: 1;
+    position: relative;
+    z-index: 2;
+  }
+  .why-item {
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid var(--orange);
+    padding-top: 1.5rem;
+    position: relative;
+  }
+  .why-item:nth-child(2) { border-color: var(--magenta); }
+  .why-item:nth-child(3) { border-color: var(--orange); }
+  .why-item:nth-child(4) { border-color: var(--magenta); }
+  .why-item:nth-child(5) { border-color: var(--gold); }
+  .why-item .num {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: clamp(4rem, 8vw, 8rem);
+    line-height: 0.92;
+    color: var(--orange);
+    letter-spacing: -0.04em;
+    margin-bottom: 1rem;
+  }
+  .why-item:nth-child(2) .num { color: var(--magenta); }
+  .why-item:nth-child(4) .num { color: var(--magenta); }
+  .why-item:nth-child(5) .num { color: var(--gold); }
+  .why-item h3 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+  .why-item p {
+    font-family: var(--body);
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--cream);
+    opacity: 0.78;
+    font-weight: 400;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 04 — HOST PEPE (magazine cover-style portrait)
+     ════════════════════════════════════════════════════════ */
+  .host {
+    background: var(--cream);
+    color: var(--ink);
+    padding: 0;
+  }
+  .host-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    width: 100%;
+    height: 100%;
+  }
+  .host-photo-frame {
+    background: var(--ink) url('betano-deck-assets/pepe-1.webp') center 8%/cover no-repeat;
+    position: relative;
+    filter: contrast(1.05) saturate(0.92);
+  }
+  .host-photo-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(10,9,8,0.5) 100%);
+  }
+  .host-photo-tag {
+    position: absolute;
+    bottom: 3vh;
+    left: 3vw;
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--cream);
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    z-index: 2;
+    line-height: 1.3;
+  }
+  .host-photo-tag strong { display: block; font-family: var(--body); font-weight: 800; font-style: normal; letter-spacing: 0.25em; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 0.3em; color: var(--orange); }
+
+  .host-photo-vertical {
+    position: absolute;
+    top: 3vh;
+    right: 1vw;
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    opacity: 0.7;
+  }
+
+  .host-content {
+    padding: 4vh 4vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    background: var(--cream);
+  }
+  .host-content::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: 1px;
+    background: rgba(20,17,15,0.15);
+  }
+  .host-eyebrow {
+    font-family: var(--body);
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--orange-deep);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+  .host-eyebrow::before { content: '02 — '; color: var(--ink); opacity: 0.35; }
+  .host-name {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(3rem, 5.5vw, 5.8rem);
+    line-height: 0.92;
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    margin-bottom: 0.1em;
+  }
+  .host-name em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--orange-deep);
+    font-size: 0.7em;
+    display: block;
+    margin-top: 0.1em;
+    letter-spacing: -0.01em;
+  }
+  .host-bio {
+    font-family: var(--body);
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: rgba(20,17,15,0.78);
+    margin: 1.2rem 0;
+    max-width: 95%;
+  }
+  .host-bio strong { color: var(--orange-deep); font-weight: 700; }
+  .host-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid rgba(20,17,15,0.18);
+    border-bottom: 1px solid rgba(20,17,15,0.18);
+    padding: 0.9rem 0;
+    margin-bottom: 0;
+  }
+  .host-stat { padding-right: 1rem; border-right: 1px solid rgba(20,17,15,0.1); }
+  .host-stat:last-child { border-right: none; padding-right: 0; }
+  .host-stat .lbl {
+    font-family: var(--body);
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(20,17,15,0.55);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .host-stat .lbl em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 500;
+    text-transform: lowercase;
+    letter-spacing: 0;
+    color: var(--orange-deep);
+  }
+  .host-stat .val {
+    font-family: var(--display);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 2rem;
+    line-height: 0.9;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .host-stat .val .unit {
+    font-size: 0.5em;
+    color: var(--orange-deep);
+    margin-left: 0.05em;
+    vertical-align: 0.25em;
+  }
+  .host-views {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 0.8rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(20,17,15,0.12);
+  }
+  .host-views .hv-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .host-views .hv-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: var(--orange-deep);
+    letter-spacing: -0.03em;
+  }
+  .host-views .hv-lbl {
+    font-family: var(--body);
+    font-size: 0.72rem;
+    color: var(--ink);
+    opacity: 0.7;
+    font-weight: 600;
+  }
+  .host-views .hv-lbl em {
+    font-family: var(--editorial);
+    font-style: italic;
+    color: var(--orange-deep);
+  }
+
+  .host-fit {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1rem 1.3rem;
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    border-left: 4px solid var(--orange);
+  }
+  .host-fit strong { color: var(--orange); font-weight: 600; font-style: normal; font-family: var(--body); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.65rem; display: block; margin-bottom: 0.5em; }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 05 — DÓNDE Y CUÁNDO (editorial infographic)
+     ════════════════════════════════════════════════════════ */
+  .when {
+    background: var(--black);
+    flex-direction: column;
+    padding: 5.5vh 5vw 4vh;
+  }
+  .when-head {
+    border-bottom: 1px solid rgba(244,236,216,0.2);
+    padding-bottom: 1.2vh;
+    margin-bottom: 2vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3vw;
+    align-items: end;
+  }
+  .when-head h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(2.4rem, 4.5vw, 5rem);
+    line-height: 0.92;
+    color: var(--cream);
+    letter-spacing: -0.025em;
+  }
+  .when-head h2 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange);
+  }
+  .when-head .when-sub {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--cream);
+    opacity: 0.78;
+  }
+  .when-head .when-sub strong { color: var(--orange); font-weight: 600; font-style: normal; font-family: var(--body); }
+
+  .when-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.1fr 1.4fr;
+    gap: 3vw;
+  }
+  .when-map {
+    background: var(--ink);
+    border: 1px solid rgba(244,236,216,0.12);
+    padding: 1.3rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .when-map-tag {
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+  .when-map-title {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+  .map-svg-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+  }
+  .map-svg-wrap svg {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+  }
+
+  .when-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .match {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 1.2rem;
+    align-items: center;
+    padding: 1rem 1.3rem;
+    background: linear-gradient(90deg, rgba(255,107,0,0.06), transparent);
+    border-left: 3px solid var(--orange);
+    position: relative;
+  }
+  .match.m2 { border-color: var(--magenta); background: linear-gradient(90deg, rgba(255,31,107,0.06), transparent); }
+  .match.m3 { border-color: var(--magenta); background: linear-gradient(90deg, rgba(255,31,107,0.06), transparent); }
+  .match.m4 {
+    border-color: var(--gold);
+    border-style: dashed;
+    background: linear-gradient(90deg, rgba(201,168,90,0.06), transparent);
+    opacity: 0.85;
+  }
+  .match-date {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 0.92;
+    text-align: left;
+  }
+  .match.m2 .match-date, .match.m3 .match-date { color: var(--magenta); }
+  .match.m4 .match-date { color: var(--gold); }
+  .match-date .day { font-size: 2.4rem; display: block; letter-spacing: -0.05em; }
+  .match-date .month {
+    font-family: var(--body);
+    font-style: normal;
+    font-weight: 800;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.7;
+    display: block;
+    margin-top: 0.3em;
+  }
+  .match-info .vs {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--cream);
+    line-height: 1;
+    letter-spacing: -0.005em;
+  }
+  .match-info .vs em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange);
+    font-size: 0.85em;
+  }
+  .match.m4 .match-info .vs em { color: var(--gold); }
+  .match-info .city {
+    font-family: var(--body);
+    font-size: 0.78rem;
+    color: var(--cream);
+    opacity: 0.65;
+    margin-top: 0.3rem;
+    letter-spacing: 0.05em;
+  }
+  .match-info .tag-base {
+    background: var(--orange);
+    color: var(--black);
+    font-family: var(--body);
+    font-weight: 800;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    padding: 0.2rem 0.5rem;
+    margin-left: 0.5rem;
+    vertical-align: 0.15em;
+  }
+  .match-info .tag-opt {
+    background: var(--gold);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 800;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    padding: 0.2rem 0.5rem;
+    margin-left: 0.5rem;
+    vertical-align: 0.15em;
+  }
+  .match-time {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.7rem;
+    color: var(--cream);
+    text-align: right;
+  }
+  .match-time .tz {
+    display: block;
+    font-family: var(--body);
+    font-style: normal;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--cream);
+    opacity: 0.5;
+    font-weight: 700;
+    margin-top: 0.3rem;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 06 — PLAN 4 CAPAS (table of contents)
+     ════════════════════════════════════════════════════════ */
+  .plan {
+    background: var(--cream);
+    color: var(--ink);
+    flex-direction: column;
+    padding: 5.5vh 5vw 4vh;
+  }
+  .plan-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 2vh;
+    margin-bottom: 2vh;
+  }
+  .plan-head h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(2.6rem, 5vw, 5.5rem);
+    line-height: 0.92;
+    color: var(--ink);
+    letter-spacing: -0.025em;
+  }
+  .plan-head h2 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange-deep);
+  }
+  .plan-head .total {
+    text-align: right;
+    font-family: var(--editorial);
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .plan-head .total .num {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 3.6rem;
+    color: var(--orange-deep);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    display: block;
+  }
+  .plan-head .total .lbl {
+    font-family: var(--body);
+    font-style: normal;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.7;
+    font-weight: 800;
+    margin-top: 0.4rem;
+  }
+
+  .plan-rolling {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.55rem 1rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-left: 4px solid var(--orange);
+  }
+  .plan-rolling .pr-tag {
+    font-family: var(--body);
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .plan-rolling .pr-text {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.95rem;
+    color: var(--cream);
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+  }
+  .plan-rolling .pr-text em {
+    font-family: var(--editorial);
+    font-style: italic;
+    color: var(--orange);
+    font-weight: 400;
+  }
+  .plan-rolling .pr-text strong {
+    color: var(--orange);
+    font-weight: 700;
+    font-style: normal;
+    font-family: var(--body);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.95rem;
+  }
+  .plan-toc {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+  }
+  .toc-row {
+    display: grid;
+    grid-template-columns: 50px 1fr 110px 220px;
+    gap: 1.5rem;
+    align-items: baseline;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(20,17,15,0.15);
+    transition: background 0.2s, padding-left 0.25s ease;
+  }
+  .toc-row:hover {
+    background: rgba(255,107,0,0.07);
+    padding-left: 0.5rem;
+  }
+  .toc-row .toc-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--orange-deep);
+    letter-spacing: -0.02em;
+  }
+  .toc-row .toc-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.2rem, 1.8vw, 1.9rem);
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+  }
+  .toc-row .toc-title em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--orange-deep);
+  }
+  .toc-row .toc-count {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 2rem;
+    color: var(--magenta-deep);
+    line-height: 0.92;
+    text-align: right;
+    letter-spacing: -0.03em;
+  }
+  .toc-row .toc-desc {
+    font-family: var(--body);
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: rgba(20,17,15,0.7);
+    text-align: right;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 07 — TENTPOLES (4 features + portrait gallery)
+     ════════════════════════════════════════════════════════ */
+  .tents {
+    background: var(--ink);
+    color: var(--cream);
+    flex-direction: column;
+    padding: 5.5vh 5vw 4vh;
+  }
+  .tents-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(244,236,216,0.18);
+    padding-bottom: 2vh;
+    margin-bottom: 3vh;
+  }
+  .tents-head h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(3rem, 6vw, 6.5rem);
+    line-height: 0.92;
+    color: var(--cream);
+    letter-spacing: -0.025em;
+  }
+  .tents-head h2 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--magenta);
+  }
+  .tents-head .feat-tag {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--cream);
+    opacity: 0.75;
+    text-align: right;
+    line-height: 1.4;
+    max-width: 280px;
+  }
+  .tents-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 2.5vw;
+  }
+  .tents-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+    gap: 1rem;
+  }
+  .tent {
+    background: var(--black);
+    padding: 1.4rem 1.5rem;
+    border-top: 3px solid var(--orange);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .tent:nth-child(2) { border-color: var(--magenta); }
+  .tent:nth-child(3) { border-color: var(--gold); }
+  .tent:nth-child(4) { border-color: var(--magenta); }
+  .tent-tag {
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tent:nth-child(2) .tent-tag { color: var(--magenta); }
+  .tent:nth-child(3) .tent-tag { color: var(--gold); }
+  .tent:nth-child(4) .tent-tag { color: var(--magenta); }
+  .tent-tag .tent-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+  }
+  .tent h3 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.6rem;
+    line-height: 0.95;
+    color: var(--cream);
+    margin-bottom: 0.7rem;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  .tent h3 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    text-transform: none;
+    color: var(--orange);
+  }
+  .tent:nth-child(2) h3 em { color: var(--magenta); }
+  .tent:nth-child(3) h3 em { color: var(--gold); }
+  .tent:nth-child(4) h3 em { color: var(--magenta); }
+  .tent p {
+    font-family: var(--body);
+    font-size: 0.83rem;
+    line-height: 1.55;
+    color: var(--cream);
+    opacity: 0.78;
+  }
+
+  .shortlist {
+    background: var(--black);
+    border: 1px solid rgba(244,236,216,0.1);
+    padding: 1.6rem 1.6rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+  }
+  .shortlist-head {
+    border-bottom: 1px solid rgba(244,236,216,0.18);
+    padding-bottom: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  .sl-eyebrow {
+    font-family: var(--body);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+  }
+  .sl-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.7rem;
+    line-height: 0.95;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  .sl-title em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange);
+    text-transform: none;
+  }
+  .shortlist-list {
+    list-style: none;
+    flex: 1;
+    counter-reset: none;
+  }
+  .shortlist-list li {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    gap: 0.8rem;
+    align-items: baseline;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(244,236,216,0.1);
+  }
+  .shortlist-list li:last-child { border-bottom: none; }
+  .sl-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--orange);
+    letter-spacing: -0.02em;
+  }
+  .sl-name {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--cream);
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+  .sl-tag {
+    font-family: var(--body);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.55;
+    font-weight: 700;
+  }
+  .shortlist-foot {
+    margin-top: 0.8rem;
+    border-top: 1px solid rgba(244,236,216,0.12);
+    padding-top: 0.7rem;
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--cream);
+    opacity: 0.6;
+  }
+  .shortlist-foot em { color: var(--orange); font-style: italic; }
+  .shortlist-foot strong {
+    display: block;
+    margin-top: 0.6rem;
+    color: var(--magenta);
+    font-style: normal;
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    opacity: 1;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 08 — LA NOTA PERFECTA (statement spread)
+     ════════════════════════════════════════════════════════ */
+  .perfecta {
+    background: linear-gradient(135deg, #1a0a14, #2a0a1f 50%, #1a0a14 100%);
+    flex-direction: column;
+    padding: 5.5vh 5vw 4vh;
+    position: relative;
+  }
+  .perfecta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 40% at 80% 20%, rgba(255,31,107,0.18), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 15% 85%, rgba(255,107,0,0.12), transparent 70%);
+  }
+  .perfecta-head {
+    border-bottom: 1px solid rgba(244,236,216,0.18);
+    padding-top: 2vh;
+    padding-bottom: 2.5vh;
+    margin-bottom: 3vh;
+    position: relative; z-index: 2;
+  }
+  .perfecta-head .top-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 1.8rem;
+  }
+  .perfecta-head h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(2.8rem, 5.5vw, 5.8rem);
+    line-height: 0.92;
+    color: var(--cream);
+    letter-spacing: -0.025em;
+  }
+  .perfecta-head h2 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--magenta);
+  }
+  .perfecta-quote {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    color: var(--cream);
+    line-height: 1.3;
+    max-width: 70%;
+    opacity: 0.92;
+  }
+  .perfecta-quote strong { color: var(--magenta); font-weight: 600; }
+
+  .perfecta-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3vw;
+    position: relative; z-index: 2;
+    align-items: stretch;
+  }
+
+  .flow {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .flow-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    background: rgba(244,236,216,0.04);
+    border-left: 3px solid var(--magenta);
+    transition: background 0.2s, transform 0.25s;
+  }
+  .flow-step:hover { background: rgba(244,236,216,0.08); transform: translateX(5px); }
+  .flow-step .fnum {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 4rem;
+    color: var(--magenta);
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+  }
+  .flow-step:nth-child(2) .fnum { color: var(--orange); }
+  .flow-step:nth-child(2) { border-color: var(--orange); }
+  .flow-step:nth-child(3) .fnum { color: var(--magenta); }
+  .flow-step:nth-child(4) .fnum { color: var(--gold); }
+  .flow-step:nth-child(4) { border-color: var(--gold); }
+  .flow-step h4 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0;
+  }
+  .flow-step p {
+    font-family: var(--body);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--cream);
+    opacity: 0.78;
+  }
+  .flow-step p em {
+    font-family: var(--editorial);
+    font-style: italic;
+    color: var(--magenta);
+    font-weight: 400;
+  }
+
+  .perfecta-why {
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,31,107,0.3);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .perfecta-why .label {
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    font-weight: 800;
+    margin-bottom: 0.7rem;
+  }
+  .perfecta-why h3 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.7rem;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+  .perfecta-why h3 em { font-family: var(--editorial); font-style: italic; font-weight: 300; color: var(--magenta); }
+  .perfecta-why ul { list-style: none; flex: 1; }
+  .perfecta-why li {
+    font-family: var(--body);
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: var(--cream);
+    opacity: 0.88;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(244,236,216,0.1);
+    padding-left: 1.4rem;
+    position: relative;
+  }
+  .perfecta-why li:last-child { border: none; }
+  .perfecta-why li::before {
+    content: '+';
+    position: absolute; left: 0;
+    color: var(--magenta);
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 1.1rem;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 09 — LA PREGUNTA BETANO
+     ════════════════════════════════════════════════════════ */
+  .pregunta {
+    background:
+      radial-gradient(ellipse 60% 40% at 80% 30%, rgba(255,107,0,0.18), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(255,31,107,0.12), transparent 70%),
+      var(--black);
+    color: var(--cream);
+    flex-direction: column;
+    padding: 5.5vh 5vw 4vh;
+    position: relative;
+  }
+  .pregunta-head {
+    border-bottom: 1px solid rgba(244,236,216,0.18);
+    padding-bottom: 2vh;
+    margin-bottom: 3vh;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 3vw;
+    align-items: end;
+    position: relative; z-index: 2;
+  }
+  .pregunta-head h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(3rem, 7vw, 7.5rem);
+    line-height: 0.92;
+    color: var(--cream);
+    letter-spacing: -0.03em;
+  }
+  .pregunta-head h2 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange);
+  }
+  .pregunta-claim {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.15rem;
+    line-height: 1.4;
+    color: var(--cream);
+    opacity: 0.85;
+  }
+  .pregunta-claim strong { color: var(--orange); font-weight: 600; }
+
+  .pregunta-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 3vw;
+    position: relative; z-index: 2;
+  }
+  .pregunta-mech {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .mech-step {
+    background: rgba(244,236,216,0.04);
+    border-left: 3px solid var(--orange);
+    padding: 1.1rem 1.4rem;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.2rem;
+    align-items: center;
+  }
+  .mech-step:nth-child(2) { border-color: var(--magenta); }
+  .mech-step:nth-child(3) { border-color: var(--gold); }
+  .mech-step .ms-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 3.2rem;
+    line-height: 0.92;
+    color: var(--orange);
+    letter-spacing: -0.05em;
+  }
+  .mech-step:nth-child(2) .ms-num { color: var(--magenta); }
+  .mech-step:nth-child(3) .ms-num { color: var(--gold); }
+  .mech-step h4 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.1rem;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    color: var(--cream);
+    text-transform: uppercase;
+    letter-spacing: 0;
+  }
+  .mech-step p {
+    font-family: var(--body);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--cream);
+    opacity: 0.78;
+  }
+  .mech-step p em {
+    font-family: var(--editorial);
+    font-style: italic;
+    color: var(--orange);
+  }
+
+  .pregunta-examples {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .ex-tag {
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 800;
+    margin-bottom: 0.2rem;
+  }
+  .ex-card {
+    background: linear-gradient(135deg, rgba(255,107,0,0.12), rgba(255,31,107,0.08));
+    border: 1px solid rgba(255,107,0,0.3);
+    padding: 1.4rem 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+  }
+  .ex-card .ex-icon {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: var(--orange);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    letter-spacing: -0.05em;
+  }
+  .ex-card:nth-of-type(2) .ex-icon { background: var(--magenta); color: var(--cream); }
+  .ex-card:nth-of-type(3) .ex-icon { background: var(--gold); }
+  .ex-card .ex-q {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.15rem;
+    line-height: 1.25;
+    color: var(--cream);
+  }
+  .ex-card .ex-q strong {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 800;
+    color: var(--orange);
+    font-size: 1.4em;
+    line-height: 0.92;
+  }
+  .ex-card:nth-of-type(2) .ex-q strong { color: var(--magenta); }
+  .ex-card:nth-of-type(3) .ex-q strong { color: var(--gold); }
+
+  .pregunta-why {
+    margin-top: 1.5rem;
+    background: var(--orange);
+    color: var(--ink);
+    padding: 1rem 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    position: relative; z-index: 2;
+  }
+  .pregunta-why .pwy-label {
+    font-family: var(--body);
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: var(--ink);
+  }
+  .pregunta-why .pwy-text {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--ink);
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+  .pregunta-why .pwy-text em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    color: var(--ink);
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 10 — RECURRENT (cápsulas + cobertura + vlogs)
+     ════════════════════════════════════════════════════════ */
+  .rec {
+    background: var(--cream);
+    color: var(--ink);
+    flex-direction: column;
+    padding: 5.5vh 5vw 4vh;
+  }
+  .rec-head {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 1.5vh;
+    margin-bottom: 2vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+  }
+  .rec-head h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 0.92;
+    color: var(--ink);
+    letter-spacing: -0.025em;
+  }
+  .rec-head h2 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange-deep);
+  }
+  .rec-head .layers-tag {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--ink);
+    opacity: 0.6;
+    text-align: right;
+  }
+  .rec-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .rec-col {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1.5rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .rec-col.col-1 { background: linear-gradient(160deg, var(--orange-deep) 0%, #b03c00 100%); }
+  .rec-col.col-2 { background: linear-gradient(160deg, var(--magenta-deep) 0%, #7a0935 100%); }
+  .rec-col.col-3 { background: var(--ink); border: 1px solid var(--gold); }
+  .rec-col .layer-mark {
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(244,236,216,0.85);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+  .rec-col h3 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.7rem;
+    color: var(--cream);
+    line-height: 0.95;
+    margin-bottom: 0.3em;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  .rec-col h3 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cream);
+    opacity: 0.85;
+    text-transform: none;
+  }
+  .rec-col .rec-count {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 4.5rem;
+    line-height: 0.92;
+    color: var(--cream);
+    letter-spacing: -0.04em;
+    margin: 0.5rem 0 1rem;
+  }
+  .rec-col.col-3 .rec-count { color: var(--gold); }
+  .rec-col ul { list-style: none; flex: 1; }
+  .rec-col li {
+    font-family: var(--body);
+    font-size: 0.85rem;
+    line-height: 1.45;
+    padding: 0.5rem 0;
+    color: rgba(244,236,216,0.92);
+    border-bottom: 1px solid rgba(244,236,216,0.15);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .rec-col li:last-child { border: none; }
+  .rec-col li::before {
+    content: '·';
+    position: absolute; left: 0; top: 0.3em;
+    color: var(--cream);
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 1.5rem;
+    line-height: 0.5;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 10 — DISTRIBUCIÓN
+     ════════════════════════════════════════════════════════ */
+  .dist {
+    background: var(--ink);
+    color: var(--cream);
+    flex-direction: column;
+    padding: 5.5vh 5vw 4vh;
+  }
+  .dist-head {
+    border-bottom: 1px solid rgba(244,236,216,0.18);
+    padding-bottom: 2vh;
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+  }
+  .dist-head h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(3rem, 6vw, 6.5rem);
+    line-height: 0.92;
+    color: var(--cream);
+    letter-spacing: -0.025em;
+  }
+  .dist-head h2 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange);
+  }
+  .dist-head .lead {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--cream);
+    opacity: 0.72;
+    line-height: 1.4;
+    text-align: right;
+    max-width: 400px;
+  }
+  .dist-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5vw;
+  }
+  .dist-block {
+    padding: 1.5rem 1.7rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .dist-core { background: linear-gradient(160deg, var(--orange) 0%, var(--orange-deep) 100%); color: var(--ink); }
+  .dist-bonus { background: var(--black); border: 2px dashed var(--magenta); }
+  .dist-tag-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 1.5rem;
+  }
+  .dist-tag {
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-weight: 800;
+    padding: 0.4rem 0.7rem;
+  }
+  .dist-core .dist-tag { background: var(--ink); color: var(--orange); }
+  .dist-bonus .dist-tag { background: var(--magenta); color: var(--cream); }
+  .dist-block h3 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.9rem;
+  }
+  .dist-core h3 { color: var(--ink); }
+  .dist-bonus h3 { color: var(--cream); }
+  .dist-core h3 em { font-family: var(--editorial); font-style: italic; font-weight: 400; color: var(--ink); opacity: 0.7; text-transform: none; }
+  .dist-bonus h3 em { font-family: var(--editorial); font-style: italic; font-weight: 400; color: var(--magenta); text-transform: none; }
+  .channels { display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+  .channel {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 0.9rem;
+    align-items: center;
+    padding: 0.65rem 0.85rem;
+  }
+  .dist-core .channel { background: rgba(0,0,0,0.18); }
+  .dist-bonus .channel { background: rgba(244,236,216,0.04); }
+  .channel-mark {
+    width: 36px; height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 0.95rem;
+    border-radius: 50%;
+  }
+  .dist-core .channel-mark { background: var(--ink); color: var(--orange); }
+  .dist-bonus .channel-mark { background: var(--magenta); color: var(--cream); }
+  .channel-info { line-height: 1.2; }
+  .channel-info .ch-name {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 0.92rem;
+    text-transform: uppercase;
+    letter-spacing: 0;
+  }
+  .dist-core .channel-info .ch-name { color: var(--ink); }
+  .dist-bonus .channel-info .ch-name { color: var(--cream); }
+  .channel-info .ch-handle {
+    font-family: var(--body);
+    font-size: 0.72rem;
+    margin-top: 0.2rem;
+    opacity: 0.75;
+  }
+  .channel-type {
+    font-family: var(--body);
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 800;
+    opacity: 0.75;
+  }
+  .dist-note {
+    margin-top: 0.7rem;
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+  .dist-core .dist-note { color: rgba(20,17,15,0.78); }
+  .dist-bonus .dist-note { color: rgba(244,236,216,0.7); }
+  .dist-bonus .dist-note strong { color: var(--magenta); font-weight: 600; }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 11 — EQUIPO EN TERRENO
+     ════════════════════════════════════════════════════════ */
+  .team {
+    background: var(--cream);
+    color: var(--ink);
+    flex-direction: column;
+    padding: 5.5vh 5vw 4vh;
+  }
+  .team-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 2vh;
+    margin-bottom: 3vh;
+  }
+  .team-head h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(3rem, 6.5vw, 6.5rem);
+    line-height: 0.92;
+    color: var(--ink);
+    letter-spacing: -0.025em;
+  }
+  .team-head h2 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange-deep);
+  }
+  .team-head .meta {
+    font-family: var(--editorial);
+    font-style: italic;
+    text-align: right;
+    font-size: 1rem;
+    color: var(--ink);
+    opacity: 0.7;
+    line-height: 1.4;
+  }
+  .team-head .meta strong {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 2.5rem;
+    color: var(--orange-deep);
+    line-height: 1;
+    display: block;
+    letter-spacing: -0.03em;
+  }
+  .team-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.2rem;
+  }
+  .team-card {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1.6rem 1.4rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-top: 3px solid var(--orange);
+  }
+  .team-card.travels::after {
+    content: 'VIAJA A USA';
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    background: var(--orange);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 800;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    padding: 0.2rem 0.4rem;
+  }
+  .team-card.remote { border-color: var(--gold); }
+  .team-card.remote::after {
+    content: 'BASE AR';
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    background: var(--gold);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 800;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    padding: 0.2rem 0.4rem;
+  }
+  .team-card .role-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 2.6rem;
+    color: var(--orange);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin-bottom: 1rem;
+  }
+  .team-card.remote .role-num { color: var(--gold); }
+  .team-card h3 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0;
+  }
+  .team-card h3 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange);
+    text-transform: none;
+    display: block;
+    font-size: 0.75em;
+    margin-top: 0.2em;
+  }
+  .team-card.remote h3 em { color: var(--gold); }
+  .team-card p {
+    font-family: var(--body);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: rgba(244,236,216,0.78);
+    flex: 1;
+    margin-bottom: 0.8rem;
+  }
+  .team-card .role-tag {
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--orange);
+    border-top: 1px solid rgba(244,236,216,0.15);
+    padding-top: 0.5rem;
+  }
+  .team-card.remote .role-tag { color: var(--gold); }
+  .team-summary {
+    margin-top: 2rem;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1.5rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .team-sum-item .lbl {
+    font-family: var(--body);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.55;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .team-sum-item .val {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 1.6rem;
+    color: var(--orange);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .team-sum-item .val em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cream);
+    font-size: 0.75em;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 12 — INVERSIÓN
+     ════════════════════════════════════════════════════════ */
+  .invest {
+    background: var(--black);
+    color: var(--cream);
+    flex-direction: column;
+    padding: 5.5vh 5vw 4vh;
+  }
+  .invest-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    border-bottom: 1px solid rgba(244,236,216,0.18);
+    padding-bottom: 1.4vh;
+    margin-bottom: 2vh;
+  }
+  .invest-head h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(2.4rem, 4.8vw, 5.2rem);
+    line-height: 0.92;
+    color: var(--cream);
+    letter-spacing: -0.025em;
+  }
+  .invest-head h2 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange);
+  }
+  .invest-head .lead {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--cream);
+    opacity: 0.72;
+    line-height: 1.4;
+    text-align: right;
+    max-width: 380px;
+  }
+  .invest-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 3vw;
+    align-items: stretch;
+  }
+  .invest-main {
+    background: linear-gradient(150deg, var(--orange) 0%, var(--orange-deep) 100%);
+    color: var(--ink);
+    padding: 1.8rem 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .invest-main::after {
+    content: '01';
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 9rem;
+    line-height: 0.8;
+    color: rgba(20,17,15,0.1);
+    letter-spacing: -0.05em;
+  }
+  .invest-main .scenario-tag {
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.85;
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+    align-self: flex-start;
+    padding: 0.35rem 0.7rem;
+    background: rgba(20,17,15,0.18);
+  }
+  .invest-amount {
+    font-family: var(--display);
+    font-weight: 900;
+    font-style: italic;
+    font-size: clamp(3.5rem, 7.5vw, 7.5rem);
+    line-height: 0.92;
+    color: var(--ink);
+    letter-spacing: -0.05em;
+    margin: 0.3rem 0;
+  }
+  .invest-amount .currency {
+    font-size: 0.32em;
+    vertical-align: 1.4em;
+    margin-right: 0.1em;
+    font-style: normal;
+    font-weight: 800;
+    font-family: var(--body);
+    letter-spacing: 0.1em;
+  }
+  .invest-includes {
+    list-style: none;
+    margin-top: 1rem;
+    columns: 2;
+    column-gap: 1.5rem;
+  }
+  .invest-includes li {
+    font-family: var(--body);
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: rgba(20,17,15,0.92);
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    break-inside: avoid;
+    border-bottom: 1px solid rgba(20,17,15,0.18);
+  }
+  .invest-includes li::before {
+    content: '✓';
+    position: absolute; left: 0;
+    color: var(--ink);
+    font-weight: 900;
+    font-size: 0.8em;
+  }
+  .invest-bonus {
+    background: var(--ink);
+    border: 1px dashed var(--magenta);
+    padding: 1.5rem 1.6rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .invest-bonus::after {
+    content: '02';
+    position: absolute;
+    top: 0.2rem;
+    right: 1rem;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 7rem;
+    line-height: 0.8;
+    color: rgba(255,31,107,0.06);
+    letter-spacing: -0.05em;
+  }
+  .invest-bonus .scenario-tag {
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+    align-self: flex-start;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--magenta);
+  }
+  .invest-bonus h3 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  .invest-bonus h3 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--magenta);
+    text-transform: none;
+  }
+  .invest-bonus .amt-bonus {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    line-height: 0.9;
+    color: var(--magenta);
+    margin: 0.4rem 0 0.7rem;
+    letter-spacing: -0.04em;
+  }
+  .invest-bonus .amt-bonus .placeholder { opacity: 0.7; }
+  .invest-bonus ul { list-style: none; flex: 1; }
+  .invest-bonus li {
+    font-family: var(--body);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--cream);
+    opacity: 0.85;
+    padding: 0.35rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .invest-bonus li::before {
+    content: '+';
+    position: absolute; left: 0;
+    color: var(--magenta);
+    font-weight: 900;
+  }
+  .invest-bonus .note {
+    margin-top: 0.6rem;
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--cream);
+    opacity: 0.6;
+    border-top: 1px solid rgba(244,236,216,0.15);
+    padding-top: 0.7rem;
+  }
+  .invest-bonus li { font-size: 0.78rem; padding: 0.25rem 0 0.25rem 1.2rem; }
+  .invest-extra {
+    grid-column: 1 / -1;
+    margin-top: 0.8rem;
+    padding: 0.85rem 1.1rem;
+    background: rgba(255,107,0,0.08);
+    border: 1px dashed rgba(255,107,0,0.5);
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .invest-extra .extra-tag {
+    font-family: var(--body);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 800;
+    padding: 0.3rem 0.55rem;
+    border: 1px solid var(--orange);
+    white-space: nowrap;
+  }
+  .invest-extra .extra-row {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 1.2rem;
+    min-width: 0;
+  }
+  .invest-extra h4 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    color: var(--cream);
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .invest-extra h4 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange);
+    text-transform: none;
+  }
+  .invest-extra p {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    color: var(--cream);
+    opacity: 0.75;
+    flex: 1;
+    min-width: 0;
+  }
+  .invest-extra .extra-amount {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: clamp(1.1rem, 1.8vw, 1.55rem);
+    line-height: 0.9;
+    color: var(--orange);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .invest-extra .extra-amount em {
+    font-family: var(--editorial);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(244,236,216,0.6);
+    font-size: 0.8em;
+  }
+  .invest-foot {
+    grid-column: 1 / -1;
+    margin-top: 0.5rem;
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 0.74rem;
+    line-height: 1.4;
+    color: var(--cream);
+    opacity: 0.7;
+    text-align: right;
+  }
+  .invest-foot strong {
+    color: var(--orange);
+    font-weight: 600;
+    font-style: normal;
+    font-family: var(--body);
+    letter-spacing: 0.01em;
+    font-size: 0.78rem;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SLIDE 13 — TIMELINE + CIERRE
+     ════════════════════════════════════════════════════════ */
+  .closing {
+    background: var(--cream);
+    color: var(--ink);
+    flex-direction: column;
+    padding: 5.5vh 5vw 4vh;
+    position: relative;
+    overflow: hidden;
+    gap: 2.5vh;
+  }
+  .closing::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 60% at 90% 100%, rgba(255,31,107,0.15), transparent 70%),
+      radial-gradient(ellipse 40% 50% at 10% 0%, rgba(255,107,0,0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .closing-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3vw;
+    align-items: end;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 2.8vh;
+    margin-bottom: 0;
+    position: relative; z-index: 2;
+  }
+  .closing-head h2 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(3rem, 6.5vw, 6.8rem);
+    line-height: 0.95;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+  }
+  .closing-head h2 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--magenta-deep);
+  }
+  .closing-head .lead {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--ink);
+    opacity: 0.78;
+    line-height: 1.45;
+  }
+  .closing-head .lead strong { color: var(--orange-deep); font-weight: 600; font-style: normal; font-family: var(--body); }
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-bottom: 0;
+    position: relative; z-index: 2;
+  }
+  .tl-step {
+    background: rgba(20,17,15,0.04);
+    padding: 2.2rem 1.4rem 2rem;
+    position: relative;
+    border-right: 1px solid rgba(20,17,15,0.15);
+    min-height: 22vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .tl-step:last-child { border-right: none; }
+  .tl-step.active {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .tl-step .phase {
+    font-family: var(--body);
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.55;
+    font-weight: 800;
+  }
+  .tl-step.active .phase { color: var(--orange); opacity: 1; }
+  .tl-step h4 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 1;
+    margin: 0.5rem 0;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: -0.005em;
+  }
+  .tl-step.active h4 { color: var(--cream); }
+  .tl-step h4 em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange-deep);
+  }
+  .tl-step.active h4 em { color: var(--orange); }
+  .tl-step .when-txt {
+    font-family: var(--body);
+    font-size: 0.85rem;
+    color: var(--ink);
+    opacity: 0.7;
+    margin-top: 0.5rem;
+    line-height: 1.4;
+  }
+  .tl-step.active .when-txt { color: var(--cream); opacity: 0.85; }
+
+  .closing-cta {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3vw;
+    align-items: end;
+    flex: 0 0 auto;
+    position: relative; z-index: 2;
+  }
+  .closing-cta-text {}
+  .closing-cta-text .big {
+    font-family: var(--display);
+    font-weight: 900;
+    font-style: italic;
+    font-size: clamp(3rem, 5.8vw, 6.2rem);
+    line-height: 0.92;
+    color: var(--ink);
+    letter-spacing: -0.035em;
+    margin-bottom: 1rem;
+  }
+  .closing-cta-text .big em {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--orange-deep);
+  }
+  .closing-cta-text p {
+    font-family: var(--body);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: rgba(20,17,15,0.78);
+    max-width: 90%;
+  }
+  .closing-cta-text p strong { color: var(--ink); font-weight: 700; }
+  .closing-contact {
+    border-left: 1px solid rgba(20,17,15,0.2);
+    padding-left: 2vw;
+    align-self: end;
+  }
+  .closing-contact .lbl {
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.55;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+  .closing-contact .who {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--ink);
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .closing-contact .role {
+    font-family: var(--editorial);
+    font-style: italic;
+    color: var(--ink);
+    opacity: 0.7;
+    font-size: 0.92rem;
+    margin-bottom: 1rem;
+  }
+  .closing-contact .mail {
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--orange-deep);
+    border-top: 1px solid rgba(20,17,15,0.18);
+    padding-top: 0.8rem;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     NAV + UTILITIES
+     ════════════════════════════════════════════════════════ */
+  .nav-rail {
+    position: fixed;
+    right: 1.5vw;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    z-index: 50;
+  }
+  .nav-rail button {
+    width: 22px;
+    height: 2px;
+    background: rgba(244,236,216,0.3);
+    border: none;
+    padding: 0;
+    cursor: none;
+    transition: all 0.25s;
+  }
+  .nav-rail button:hover { background: var(--orange); width: 28px; }
+  .nav-rail button.active { background: var(--orange); width: 32px; height: 3px; }
+
+  .help-key {
+    position: fixed;
+    bottom: 1vh;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--body);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.4;
+    z-index: 50;
+    pointer-events: none;
+    background: rgba(10,9,8,0.5);
+    padding: 0.3rem 0.8rem;
+    backdrop-filter: blur(6px);
+  }
+
+  /* Page entrance animation — minimal, only on first viewing */
+  .slide { opacity: 1; }
+  .slide.first-view {
+    animation: slide-in 0.5s ease-out;
+  }
+  @keyframes slide-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* Print rules — for PDF export */
+  @media print {
+    @page { size: 1920px 1080px landscape; margin: 0; }
+    html, body { scroll-snap-type: none; cursor: auto; }
+    body::after { display: none; }
+    .cursor-dot, .cursor-ring, .nav-rail, .help-key { display: none !important; }
+    .slide {
+      page-break-after: always;
+      width: 1920px;
+      height: 1080px;
+      min-height: 1080px;
+    }
+    .slide.in-view > * { animation: none; }
+  }
+
+  /* ───── TABLET (≤ 1100px) ───── */
+  @media (max-width: 1100px) {
+    .why-grid, .team-grid { grid-template-columns: repeat(3, 1fr); }
+    .rec-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .toc-row { grid-template-columns: 60px 1fr; }
+    .toc-row .toc-count, .toc-row .toc-desc { display: none; }
+  }
+
+  /* ───── TOUCH DEVICES — kill custom cursor ───── */
+  @media (hover: none) {
+    html, body { cursor: auto; }
+    .cursor-dot, .cursor-ring { display: none !important; }
+  }
+
+  /* ───── MOBILE (≤ 768px) ───── */
+  @media (max-width: 768px) {
+    html, body {
+      scroll-snap-type: none;
+      cursor: auto;
+    }
+    .cursor-dot, .cursor-ring, .nav-rail, .help-key { display: none !important; }
+
+    .slide {
+      width: 100vw;
+      height: auto;
+      min-height: auto;
+      scroll-snap-align: none;
+      padding: 4vh 6vw 5vh;
+      flex-direction: column;
+    }
+
+    .slide-tag { font-size: 0.6rem; letter-spacing: 0.25em; top: 2vh; left: 6vw; }
+    .slide-num { bottom: 2vh; right: 6vw; font-size: 0.85rem; }
+    .slide-num::before { content: 'Pg. '; }
+
+    /* ───── Cover ───── */
+    .cover { padding: 4vh 6vw 5vh; }
+    .masthead {
+      flex-direction: column;
+      gap: 0.6rem;
+      align-items: flex-start;
+      padding-bottom: 1rem;
+    }
+    .masthead-mid, .masthead-right { font-size: 0.7rem; text-align: left; }
+    .cover-hero {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2vh 0;
+    }
+    .cover-headline .l1 { font-size: 3rem; }
+    .cover-headline .l2 { font-size: 4rem; }
+    .cover-headline .l3 { font-size: 1.4rem; }
+    .cover-portrait { width: 60vw; max-width: 240px; margin: 0 auto; }
+    .cover-claim-bar {
+      flex-direction: column;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+    .cover-claim { font-size: 0.95rem; }
+    .cover-stamp { font-size: 0.65rem; }
+    .cover-foot { gap: 1rem; padding-right: 0; }
+    .cover-foot .ramped-mark { width: 120px; height: 32px; }
+    .cover-foot .betano-mark { width: 100px; height: 32px; }
+    .cover .slide-num { left: auto; right: 6vw; transform: none; bottom: 2vh; }
+
+    /* ───── Idea ───── */
+    .idea { padding: 4vh 6vw 5vh; }
+    .idea-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .idea h1 { font-size: clamp(2.5rem, 11vw, 4rem); }
+    .idea-body { columns: 1; column-rule: none; font-size: 0.92rem; }
+    .idea-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(20,17,15,0.15); padding-top: 1.5rem; }
+    .idea-pullquote { font-size: 1.4rem; }
+    .idea-pullquote::before { font-size: 5rem; }
+
+    /* ───── Why (5 razones) ───── */
+    .why { padding: 4vh 6vw 5vh; }
+    .why-head { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .why-head h2 { font-size: 2.8rem; }
+    .why-head .deck-credit { text-align: left; font-size: 0.85rem; }
+    .why-grid { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .why-item .num { font-size: 3.5rem; }
+    .why-item h3 { font-size: 1rem; }
+    .why-item p { font-size: 0.78rem; }
+
+    /* ───── Host ───── */
+    .host { padding: 0; }
+    .host-grid { grid-template-columns: 1fr; }
+    .host-photo-frame { aspect-ratio: 4/3; min-height: 280px; }
+    .host-photo-vertical { font-size: 0.7rem; right: 0.5vw; top: 1vh; }
+    .host-content { padding: 4vh 6vw; }
+    .host-content::before { display: none; }
+    .host-name { font-size: clamp(2.5rem, 9vw, 3.5rem); }
+    .host-bio { font-size: 0.85rem; margin: 1rem 0; }
+    .host-stats { grid-template-columns: 1fr 1fr 1fr; padding: 0.7rem 0; }
+    .host-stat { padding-right: 0.5rem; }
+    .host-stat .val { font-size: 1.4rem; }
+    .host-stat .lbl { font-size: 0.55rem; letter-spacing: 0.15em; }
+    .host-views { flex-direction: column; gap: 0.4rem; }
+    .host-views .hv-num { font-size: 1.05rem; }
+    .host-fit { font-size: 0.85rem; padding: 0.8rem 1rem; }
+
+    /* ───── When (mapa) ───── */
+    .when { padding: 4vh 6vw 5vh; }
+    .when-head { grid-template-columns: 1fr; gap: 1rem; }
+    .when-head h2 { font-size: 2.4rem; }
+    .when-head .when-sub { font-size: 0.9rem; }
+    .when-body { grid-template-columns: 1fr; gap: 1rem; }
+    .when-map { padding: 1.2rem; }
+    .when-map-title { font-size: 1.1rem; }
+    .map-svg-wrap { min-height: 180px; }
+    .when-list { gap: 0.5rem; }
+    .match {
+      grid-template-columns: 65px 1fr;
+      grid-template-rows: auto auto;
+      gap: 0.6rem 1rem;
+      padding: 0.85rem 1rem;
+    }
+    .match-time {
+      grid-column: 2;
+      text-align: left;
+      font-size: 1.2rem;
+    }
+    .match-time .tz { display: inline; font-size: 0.55rem; margin-left: 0.5rem; }
+    .match-date .day { font-size: 1.8rem; }
+    .match-date .month { font-size: 0.55rem; }
+    .match-info .vs { font-size: 1rem; }
+    .match-info .city { font-size: 0.7rem; }
+
+    /* ───── Plan editorial ───── */
+    .plan { padding: 4vh 6vw 5vh; }
+    .plan-head { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .plan-head h2 { font-size: 2.4rem; }
+    .plan-head .total { text-align: left; }
+    .plan-head .total .num { font-size: 3rem; }
+    .plan-rolling { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 0.8rem 1rem; }
+    .plan-rolling .pr-text { font-size: 0.95rem; }
+    .toc-row {
+      grid-template-columns: 40px 1fr auto;
+      gap: 0.8rem;
+      padding: 0.8rem 0;
+    }
+    .toc-row .toc-num { font-size: 1.1rem; }
+    .toc-row .toc-title { font-size: 1.2rem; }
+    .toc-row .toc-count { font-size: 1.6rem; display: block; text-align: right; }
+    .toc-row .toc-desc { display: none; }
+
+    /* ───── Tentpoles ───── */
+    .tents { padding: 4vh 6vw 5vh; }
+    .tents-head { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .tents-head h2 { font-size: 2.4rem; }
+    .tents-head .feat-tag { text-align: left; max-width: 100%; font-size: 0.85rem; }
+    .tents-body { grid-template-columns: 1fr; gap: 1.5rem; }
+    .tents-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+    .tent { padding: 1.1rem 1.2rem; }
+    .tent h3 { font-size: 1.15rem; }
+    .tent p { font-size: 0.82rem; }
+    .shortlist { padding: 1.2rem; }
+    .sl-title { font-size: 1.3rem; }
+    .shortlist-list li { padding: 0.45rem 0; }
+    .sl-name { font-size: 0.95rem; }
+
+    /* ───── Perfecta ───── */
+    .perfecta { padding: 4vh 6vw 5vh; }
+    .perfecta-head h2 { font-size: 2.4rem; }
+    .perfecta-quote { max-width: 100%; font-size: 0.95rem; }
+    .perfecta-body { grid-template-columns: 1fr; gap: 1.5rem; }
+    .flow-step { padding: 0.9rem 1rem; gap: 0.9rem; grid-template-columns: 50px 1fr; }
+    .flow-step .fnum { font-size: 2.6rem; }
+    .flow-step h4 { font-size: 0.95rem; }
+    .flow-step p { font-size: 0.78rem; }
+    .perfecta-why { padding: 1.5rem; }
+
+    /* ───── Pregunta Betano ───── */
+    .pregunta { padding: 4vh 6vw 5vh; }
+    .pregunta-head { grid-template-columns: 1fr; gap: 1rem; }
+    .pregunta-head h2 { font-size: 2.4rem; }
+    .pregunta-claim { font-size: 0.95rem; }
+    .pregunta-body { grid-template-columns: 1fr; gap: 1.5rem; }
+    .mech-step { padding: 0.85rem 1rem; grid-template-columns: 45px 1fr; gap: 0.9rem; }
+    .mech-step .ms-num { font-size: 2.4rem; }
+    .ex-card { padding: 1rem 1.2rem; gap: 1rem; }
+    .ex-card .ex-icon { width: 38px; height: 38px; font-size: 1.1rem; }
+    .ex-card .ex-q { font-size: 0.92rem; }
+    .pregunta-why { grid-template-columns: 1fr; gap: 0.5rem; padding: 0.9rem 1.2rem; }
+    .pregunta-why .pwy-text { font-size: 0.9rem; }
+
+    /* ───── Recurrente ───── */
+    .rec { padding: 4vh 6vw 5vh; }
+    .rec-head { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .rec-head h2 { font-size: 2.4rem; }
+    .rec-head .layers-tag { text-align: left; }
+    .rec-grid { grid-template-columns: 1fr; }
+    .rec-col { padding: 1.2rem 1.3rem; }
+    .rec-col h3 { font-size: 1.3rem; }
+    .rec-col .rec-count { font-size: 3rem; }
+
+    /* ───── Distribución ───── */
+    .dist { padding: 4vh 6vw 5vh; }
+    .dist-head { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .dist-head h2 { font-size: 2.4rem; }
+    .dist-head .lead { text-align: left; max-width: 100%; }
+    .dist-body { grid-template-columns: 1fr; gap: 1.5rem; }
+    .dist-block { padding: 1.2rem 1.3rem; }
+
+    /* ───── Equipo ───── */
+    .team { padding: 4vh 6vw 5vh; }
+    .team-head { grid-template-columns: 1fr; gap: 1rem; }
+    .team-head h2 { font-size: 2.4rem; }
+    .team-head .meta { text-align: left; }
+    .team-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .team-card { padding: 1.1rem 1rem 1rem; }
+    .team-card .role-num { font-size: 2rem; }
+    .team-card h3 { font-size: 0.95rem; }
+    .team-card p { font-size: 0.7rem; }
+    .team-summary { grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1rem 1.2rem; }
+    .team-sum-item .val { font-size: 1.2rem; }
+
+    /* ───── Inversión ───── */
+    .invest { padding: 4vh 6vw 5vh; }
+    .invest-head { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .invest-head h2 { font-size: 2.4rem; }
+    .invest-head .lead { text-align: left; max-width: 100%; }
+    .invest-body { grid-template-columns: 1fr; gap: 1.5rem; }
+    .invest-main { padding: 1.6rem 1.5rem; }
+    .invest-amount { font-size: 4rem; }
+    .invest-includes { columns: 1; }
+    .invest-bonus { padding: 1.4rem; }
+    .invest-bonus .amt-bonus { font-size: 2.2rem; }
+    .invest-extra { padding: 1.1rem 1.2rem; }
+    .invest-extra .extra-body { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+    .invest-extra h4 { font-size: 1.3rem; }
+    .invest-extra p { font-size: 0.78rem; }
+    .invest-extra .extra-amount { font-size: 1.6rem; }
+
+    /* ───── Cierre ───── */
+    .closing { padding: 4vh 6vw 5vh; }
+    .closing-head { grid-template-columns: 1fr; gap: 1rem; }
+    .closing-head h2 { font-size: 2.6rem; }
+    .timeline { grid-template-columns: 1fr 1fr; gap: 0; max-width: 100%; }
+    .tl-step { border-bottom: 1px solid rgba(20,17,15,0.15); padding: 0.9rem 0.9rem; }
+    .tl-step:nth-child(even) { border-right: none; }
+    .tl-step h4 { font-size: 1rem; }
+    .closing-cta { grid-template-columns: 1fr; gap: 1.5rem; }
+    .closing-cta-text .big { font-size: 2.6rem; }
+    .closing-cta-text p { max-width: 100%; }
+    .closing-contact {
+      border-left: none;
+      padding-left: 0;
+      border-top: 1px solid rgba(20,17,15,0.2);
+      padding-top: 1.2rem;
+    }
+    .closing::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor-dot" id="cdot"></div>
+<div class="cursor-ring" id="cring"></div>
+
+<!-- ════════ SLIDE 01 — COVER ════════ -->
+<section class="slide cover" id="s1">
+  <div class="masthead">
+    <div class="masthead-left">
+      <strong>Betano × Ramped</strong>
+      Edición especial Mundial 2026 · USA
+    </div>
+    <div class="masthead-mid">/ Issue Nº 01</div>
+    <div class="masthead-right">Mundial 2026<br>USA</div>
+  </div>
+
+  <div class="cover-hero">
+    <div class="cover-headline">
+      <span class="l1"><span class="skew">EL LADO</span> <span class="b-mark skew">B</span></span>
+      <span class="l2 skew">DEL MUNDIAL</span>
+      <span class="l3">— el otro Mundial empieza acá.</span>
+    </div>
+    <div class="cover-portrait" aria-label="Pepe Ochoa, enviado especial"></div>
+  </div>
+
+  <div class="cover-claim-bar">
+    <div class="cover-claim">Donde la <em>confianza</em> también juega</div>
+  </div>
+
+  <div class="cover-foot">
+    <span class="ramped-mark" aria-label="Ramped"></span>
+    <span class="betano-mark" aria-label="Betano"></span>
+  </div>
+  <div class="slide-num">01</div>
+</section>
+
+<!-- ════════ SLIDE 02 — LA IDEA ════════ -->
+<section class="slide idea" id="s2">
+  <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> La Idea</div>
+  <div class="idea-grid">
+    <div class="idea-left">
+      <div class="idea-eyebrow">La idea editorial</div>
+      <h1>EL MUNDIAL<br>QUE NO <em>se ve</em><br>en la tele.</h1>
+      <div class="idea-body">
+        <p>En época de Mundial, todas las marcas hablan del partido. <strong>Betano elige el otro camino.</strong></p>
+        <p>Detrás de cada jugador hay vínculos, familias y rituales que también son protagonistas del Mundial — pero casi nunca aparecen en cámara.</p>
+        <p>Buscamos el clima en el que aparecen las mejores anécdotas: <strong>cercanía, autenticidad y confianza.</strong></p>
+      </div>
+    </div>
+    <div class="idea-right">
+      <div class="idea-pullquote">
+        Mientras todos cuentan el partido, nosotros contamos <em>la víspera</em>. La casa, la familia, los rituales.
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">02</div>
+</section>
+
+<!-- ════════ SLIDE 03 — POR QUÉ FUNCIONA ════════ -->
+<section class="slide why" id="s3">
+  <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> Por qué funciona</div>
+  <div class="why-head">
+    <h2>5 razones<br>por las que <em>funciona.</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="num">01</div>
+      <h3>Diferenciación<br>Total</h3>
+      <p>Mientras todas las marcas hablan del juego, Betano construye un territorio propio donde el fútbol queda en un segundo plano.</p>
+    </div>
+    <div class="why-item">
+      <div class="num">02</div>
+      <h3>Extensión<br>Natural</h3>
+      <p>Betano no es solo deporte — es entretenimiento, lifestyle y tiempo libre. Este formato lo hace evidente sin forzarlo.</p>
+    </div>
+    <div class="why-item">
+      <div class="num">03</div>
+      <h3>Nuevo<br>Territorio</h3>
+      <p>Abre conversación con audiencias que no consumen solo fútbol. Mujeres, lifestyle, gossip — más reach, más engagement.</p>
+    </div>
+    <div class="why-item">
+      <div class="num">04</div>
+      <h3>Instagram<br>First</h3>
+      <p>Pensado 100% para Instagram desde el día uno. Reels viralizables y Stories en tiempo real, con mecánica de continuidad para fidelizar.</p>
+    </div>
+    <div class="why-item">
+      <div class="num">05</div>
+      <h3>Humaniza<br>la marca</h3>
+      <p>Conecta con historias, emociones y situaciones reales que rodean al evento más visto del año.</p>
+    </div>
+  </div>
+  <div class="slide-num">03</div>
+</section>
+
+<!-- ════════ SLIDE 04 — HOST PEPE ════════ -->
+<section class="slide host" id="s4">
+  <div class="host-grid">
+    <div class="host-photo-frame">
+      <div class="host-photo-vertical">El enviado especial</div>
+    </div>
+    <div class="host-content">
+      <div class="host-eyebrow">El host</div>
+      <div class="host-name">PEPE<br>OCHOA<em>— el enviado.</em></div>
+      <div class="host-bio">
+        Periodista, panelista y figura del entretenimiento argentino. Voz reconocida del universo gossip-lifestyle, con relación directa con Ángel de Brito y Yanina Latorre. Su perfil garantiza <strong>acceso a entornos íntimos, tono cercano y replicación natural</strong> en TV abierta y streams.
+      </div>
+      <div class="host-stats">
+        <div class="host-stat">
+          <div class="lbl">Seguidores IG</div>
+          <div class="val">344<span class="unit">K</span></div>
+        </div>
+        <div class="host-stat">
+          <div class="lbl">Engagement</div>
+          <div class="val">3,35<span class="unit">%</span></div>
+        </div>
+        <div class="host-stat">
+          <div class="lbl">Views <em>x reel</em></div>
+          <div class="val">250<span class="unit">K</span></div>
+        </div>
+      </div>
+      <div class="host-views">
+        <div class="hv-item"><span class="hv-num">60K</span><span class="hv-lbl">views <em>por historia</em></span></div>
+        <div class="hv-item"><span class="hv-num">250K</span><span class="hv-lbl">views <em>por reel</em></span></div>
+      </div>
+      <div class="host-fit">
+        <strong>Fit con Betano</strong>
+        Pepe combina universo gossip-lifestyle con afinidad deportiva. Conecta con audiencias que Betano no captura solo desde el deporte.
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">04</div>
+</section>
+
+<!-- ════════ SLIDE 05 — DÓNDE Y CUÁNDO ════════ -->
+<section class="slide when" id="s5">
+  <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> Dónde &amp; Cuándo</div>
+  <div class="when-head">
+    <h2>USA, junio:<br><em>tres ciudades,<br>un objetivo.</em></h2>
+    <div class="when-sub">Argentina disputa los 3 partidos de fase de grupos en territorio estadounidense. Base camp oficial de la Selección: <strong>Kansas City.</strong> Cobertura: 14 jun → 4 jul de 2026.</div>
+  </div>
+  <div class="when-body">
+    <div class="when-map">
+      <div class="when-map-tag">— Las tres ciudades del shoot</div>
+      <div class="when-map-title">Recorrido<br>en territorio.</div>
+      <div class="map-svg-wrap">
+        <svg viewBox="0 30 500 260" xmlns="http://www.w3.org/2000/svg" aria-label="Mapa USA con sedes">
+          <defs>
+            <filter id="glow"><feGaussianBlur stdDeviation="2"/></filter>
+          </defs>
+          <path d="M30,180 Q35,120 80,90 Q130,60 180,70 Q220,50 280,55 Q340,45 400,70 Q450,90 470,140 L475,180 Q470,210 450,230 Q420,260 380,265 Q340,275 290,270 Q230,275 180,265 Q130,260 90,250 Q50,230 35,210 Z"
+                fill="#1a1612" stroke="rgba(244,236,216,0.18)" stroke-width="1.5"/>
+
+          <line x1="270" y1="160" x2="240" y2="225" stroke="#ff6b00" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.7"/>
+          <line x1="240" y1="225" x2="395" y2="245" stroke="#c9a85a" stroke-width="1.5" stroke-dasharray="3 5" opacity="0.5"/>
+
+          <circle cx="270" cy="160" r="34" fill="none" stroke="#ff6b00" stroke-width="1" opacity="0.2"/>
+          <circle cx="270" cy="160" r="22" fill="none" stroke="#ff6b00" stroke-width="1" opacity="0.4"/>
+          <circle cx="270" cy="160" r="11" fill="#ff6b00"/>
+          <text x="285" y="155" fill="#f4ecd8" font-family="Big Shoulders Display, sans-serif" font-weight="900" font-size="15" font-style="italic">KANSAS CITY</text>
+          <text x="285" y="170" fill="#ff6b00" font-family="Manrope, sans-serif" font-size="9" font-weight="700" letter-spacing="2">MO · BASE CAMP</text>
+
+          <circle cx="240" cy="225" r="22" fill="none" stroke="#ff1f6b" stroke-width="1" opacity="0.4"/>
+          <circle cx="240" cy="225" r="11" fill="#ff1f6b"/>
+          <text x="155" y="220" fill="#f4ecd8" font-family="Big Shoulders Display, sans-serif" font-weight="900" font-size="15" font-style="italic">DALLAS</text>
+          <text x="155" y="235" fill="#ff1f6b" font-family="Manrope, sans-serif" font-size="9" font-weight="700" letter-spacing="2">TX · 2 PARTIDOS</text>
+
+          <circle cx="395" cy="245" r="20" fill="none" stroke="#c9a85a" stroke-width="1" stroke-dasharray="3" opacity="0.5"/>
+          <circle cx="395" cy="245" r="9" fill="#c9a85a" opacity="0.85"/>
+          <text x="345" y="270" fill="#f4ecd8" font-family="Big Shoulders Display, sans-serif" font-weight="900" font-size="13" font-style="italic" opacity="0.85">MIAMI</text>
+          <text x="345" y="283" fill="#c9a85a" font-family="Manrope, sans-serif" font-size="9" font-weight="700" letter-spacing="2" opacity="0.85">FL · OPCIONAL · 16VOS</text>
+        </svg>
+      </div>
+    </div>
+    <div class="when-list">
+      <div class="match">
+        <div class="match-date"><span class="day">16</span><span class="month">Jun · Mar</span></div>
+        <div class="match-info">
+          <div class="vs">Argentina <em>vs</em> Argelia<span class="tag-base">BASE CAMP</span></div>
+          <div class="city">Arrowhead Stadium · Kansas City, Missouri</div>
+        </div>
+        <div class="match-time">22:00<span class="tz">Hora ARG</span></div>
+      </div>
+      <div class="match m2">
+        <div class="match-date"><span class="day">22</span><span class="month">Jun · Lun</span></div>
+        <div class="match-info">
+          <div class="vs">Argentina <em>vs</em> Austria</div>
+          <div class="city">AT&amp;T Stadium · Arlington (Dallas), Texas</div>
+        </div>
+        <div class="match-time">14:00<span class="tz">Hora ARG</span></div>
+      </div>
+      <div class="match m3">
+        <div class="match-date"><span class="day">27</span><span class="month">Jun · Sáb</span></div>
+        <div class="match-info">
+          <div class="vs">Jordania <em>vs</em> Argentina</div>
+          <div class="city">AT&amp;T Stadium · Arlington (Dallas), Texas</div>
+        </div>
+        <div class="match-time">23:00<span class="tz">Hora ARG</span></div>
+      </div>
+      <div class="match m4">
+        <div class="match-date"><span class="day">03</span><span class="month">Jul · Vie</span></div>
+        <div class="match-info">
+          <div class="vs">16avos <em>· si pasa primero</em><span class="tag-opt">OPCIONAL</span></div>
+          <div class="city">Hard Rock Stadium · Miami, Florida</div>
+        </div>
+        <div class="match-time">—<span class="tz">A confirmar</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">05</div>
+</section>
+
+<!-- ════════ SLIDE 06 — PLAN 4 CAPAS ════════ -->
+<section class="slide plan" id="s6">
+  <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> Plan editorial</div>
+  <div class="plan-head">
+    <h2>El plan editorial<br><em>en cuatro capas.</em></h2>
+    <div class="total">
+      <span class="num">~36</span>
+      <span class="lbl">Piezas estimadas</span>
+    </div>
+  </div>
+  <div class="plan-rolling">
+    <span class="pr-tag">— Lógica editorial</span>
+    <span class="pr-text">Edición <em>en caliente.</em> Todo sale mientras el Mundial sucede. <strong>Cero diferido.</strong></span>
+  </div>
+  <div class="plan-toc">
+    <div class="toc-row">
+      <div class="toc-num">I.</div>
+      <div class="toc-title">Las 3 <em>Notas Grandes</em></div>
+      <div class="toc-count">03</div>
+      <div class="toc-desc">Tentpoles. Encuentros íntimos con familiares y figuras del entorno mundialista. Lo más grande del ciclo.</div>
+    </div>
+    <div class="toc-row">
+      <div class="toc-num">II.</div>
+      <div class="toc-title">Cápsulas <em>a famosos</em></div>
+      <div class="toc-count">12-16</div>
+      <div class="toc-desc">Pepe sale a la calle a cazar argentinos famosos en USA. Una pregunta filosa, reacción real, clip viralizable.</div>
+    </div>
+    <div class="toc-row">
+      <div class="toc-num">III.</div>
+      <div class="toc-title">Cápsulas <em>de reporteo</em></div>
+      <div class="toc-count">08-10</div>
+      <div class="toc-desc">Hoteles, bares, propinas, menús. Datos curiosos del entorno mundialista. Producción ligera, alta frecuencia.</div>
+    </div>
+    <div class="toc-row">
+      <div class="toc-num">IV.</div>
+      <div class="toc-title">Cobertura <em>+ Vlogs</em></div>
+      <div class="toc-count">09-12</div>
+      <div class="toc-desc">Previa, partido y post de cada uno de los 3 encuentros + vlogs de viaje entre Kansas City y Dallas.</div>
+    </div>
+  </div>
+  <div class="slide-num">06</div>
+</section>
+
+<!-- ════════ SLIDE 07 — TENTPOLES ════════ -->
+<section class="slide tents" id="s7">
+  <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> Capa I — Las Notas Grandes</div>
+  <div class="tents-head">
+    <h2>Las 3<br>Notas <em>Grandes.</em></h2>
+    <div class="feat-tag">Cada nota es un encuentro irrepetible. Un día completo de filmación. <em>El corazón del ciclo.</em></div>
+  </div>
+  <div class="tents-body">
+    <div class="tents-grid">
+      <div class="tent">
+        <div class="tent-tag"><span>Nota 01 · Casa</span><span class="tent-num">i.</span></div>
+        <h3>Rituales <em>de Mundial</em></h3>
+        <p>Recorremos la casa de un familiar de la Selección. Descubrimos las cábalas, rutinas y vínculos detrás de cada partido. Cómo se organiza una familia entera alrededor de la ilusión.</p>
+      </div>
+      <div class="tent">
+        <div class="tent-tag"><span>Nota 02 · Ciudad</span><span class="tent-num">ii.</span></div>
+        <h3>Camino <em>al estadio</em></h3>
+        <p>Buscamos a una protagonista del entorno y la llevamos al partido. Recorrido por dos puntos de encuentro de argentinos en USA. Charla distendida y viralizable.</p>
+      </div>
+      <div class="tent">
+        <div class="tent-tag"><span>Nota 03 · Shopping</span><span class="tent-num">iii.</span></div>
+        <h3>Compras <em>mundialistas</em></h3>
+        <p>Acompañamos a la invitada a comprar lo típico del Mundial. Activación con argentinos del lugar, competencia en vivo y dos camisetas de la Selección como premio.</p>
+      </div>
+    </div>
+    <div class="shortlist">
+      <div class="shortlist-head">
+        <div class="sl-eyebrow">— Shortlist</div>
+        <div class="sl-title">Los rostros<br><em>del ciclo.</em></div>
+      </div>
+      <ol class="shortlist-list">
+        <li><span class="sl-num">01</span><span class="sl-name">Celia Messi</span><span class="sl-tag">Familia</span></li>
+        <li><span class="sl-num">02</span><span class="sl-name">La Chola Simeone</span><span class="sl-tag">Familia</span></li>
+        <li><span class="sl-num">03</span><span class="sl-name">Oriana Sabatini</span><span class="sl-tag">Pareja</span></li>
+        <li><span class="sl-num">04</span><span class="sl-name">Valu Cervantes</span><span class="sl-tag">Pareja</span></li>
+        <li><span class="sl-num">05</span><span class="sl-name">Camila Galante</span><span class="sl-tag">Pareja</span></li>
+        <li><span class="sl-num">06</span><span class="sl-name">Karen Cavallari</span><span class="sl-tag">Pareja</span></li>
+      </ol>
+      <div class="shortlist-foot">— Mix sugerido: <em>3 invitadas del entorno cercano (familia + pareja).</em> Una por Nota Grande. Lista a confirmar según disponibilidad.</div>
+    </div>
+  </div>
+  <div class="slide-num">07</div>
+</section>
+
+<!-- ════════ SLIDE 08 — CÁPSULAS A FAMOSOS ════════ -->
+<section class="slide perfecta" id="s8">
+  <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> Capa II — El motor narrativo</div>
+  <div class="perfecta-head">
+    <div class="top-line">
+      <h2>Cápsulas a<br><em>famosos.</em></h2>
+    </div>
+    <div class="perfecta-quote">Pepe sale a la calle a cazar argentinos famosos en USA. <strong>Formato ágil entre Notas Grandes</strong> — pregunta corta, reacción real, clip viralizable.</div>
+  </div>
+  <div class="perfecta-body">
+    <div class="flow">
+      <div class="flow-step">
+        <div class="fnum">1</div>
+        <div>
+          <h4>El radar</h4>
+          <p>Mapeamos a famosos argentinos que viajan al Mundial: jugadores retirados, periodistas, conductores, influencers. <em>Hoteles, bares, fan zones, shoppings.</em></p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="fnum">2</div>
+        <div>
+          <h4>El abordaje</h4>
+          <p>Pepe los intercepta en el momento. Sin set, sin guion. <em>Una sola pregunta filosa</em> que dispara una reacción honesta — el ADN del formato Pepe.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="fnum">3</div>
+        <div>
+          <h4>El clip</h4>
+          <p>Pieza vertical 30-60s. Editada en caliente, lista para subir el mismo día. Crece la conversación entre Notas Grandes.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="fnum">4</div>
+        <div>
+          <h4>El loop</h4>
+          <p>Cada cápsula alimenta a la siguiente. La gente espera quién va a aparecer. <em>Engagement diario, sin presupuesto pesado.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="perfecta-why">
+      <div class="label">— Por qué importa</div>
+      <h3>Es el motor <em>diario.</em></h3>
+      <ul>
+        <li>Mantiene el ciclo vivo entre Notas Grandes.</li>
+        <li>Producción liviana = alta frecuencia sin saturar el budget.</li>
+        <li>Pepe en su mejor versión: improvisación + chispa.</li>
+        <li>Cada cápsula es un punto natural de inserción Betano.</li>
+        <li>El factor sorpresa empuja shares y guarda la conversación 7/7.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="slide-num">08</div>
+</section>
+
+<!-- ════════ SLIDE 09 — LA PREGUNTA BETANO ════════ -->
+<section class="slide pregunta" id="s9">
+  <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> Cierre editorial</div>
+  <div class="pregunta-head">
+    <h2>La pregunta<br><em>Betano.</em></h2>
+    <div class="pregunta-claim">El guiño que cierra cada Nota Grande. <strong>Pronóstico, premio y conversación.</strong> Sin ser condicionante del tono editorial.</div>
+  </div>
+  <div class="pregunta-body">
+    <div class="pregunta-mech">
+      <div class="mech-step">
+        <div class="ms-num">1</div>
+        <div>
+          <h4>La pregunta</h4>
+          <p>Antes de cerrar cada nota, Pepe lanza una <em>pregunta de pronóstico</em> con dato random difícil de adivinar — sin condicionar el resto del contenido.</p>
+        </div>
+      </div>
+      <div class="mech-step">
+        <div class="ms-num">2</div>
+        <div>
+          <h4>La audiencia juega</h4>
+          <p>Invitamos al público a comentar su predicción. <em>Cada respuesta es engagement directo</em> en Instagram, todos los días del Mundial.</p>
+        </div>
+      </div>
+      <div class="mech-step">
+        <div class="ms-num">3</div>
+        <div>
+          <h4>El premio</h4>
+          <p>Quienes acierten la cantidad exacta ganan premios Betano. <em>Conversión natural</em> y mecánica de fidelización sin romper el tono.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pregunta-examples">
+      <div class="ex-tag">— Tres ejemplos posibles</div>
+      <div class="ex-card">
+        <div class="ex-icon">?</div>
+        <div class="ex-q">¿Cuántos <strong>laterales</strong> habrá a lo largo del Mundial?</div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-icon">?</div>
+        <div class="ex-q">¿Cuántas <strong>amarillas</strong> sacará el árbitro en el partido?</div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-icon">?</div>
+        <div class="ex-q">¿Cuántos <strong>tiros al arco</strong> hará Argentina en fase de grupos?</div>
+      </div>
+    </div>
+  </div>
+  <div class="pregunta-why">
+    <div class="pwy-label">— Por qué es oro</div>
+    <div class="pwy-text">Es la <em>única inserción comercial pura</em> del ciclo. Predicción + engagement + conversión. ADN Betano sin nombrarlo.</div>
+  </div>
+  <div class="slide-num">09</div>
+</section>
+
+<!-- ════════ SLIDE 10 — RECURRENT ════════ -->
+<section class="slide rec" id="s10">
+  <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> Capas III y IV</div>
+  <div class="rec-head">
+    <h2>El contenido<br><em>recurrente.</em></h2>
+    <div class="layers-tag">Lo que sostiene la conversación todos los días,<br>entre Nota y Nota Grande.</div>
+  </div>
+  <div class="rec-grid">
+    <div class="rec-col col-1">
+      <div class="layer-mark">— Capa III</div>
+      <h3>Cápsulas<br><em>de reporteo</em></h3>
+      <div class="rec-count">8–10</div>
+      <ul>
+        <li>Hoteles donde se hospedan los famosos</li>
+        <li>Dónde comen los argentinos VIP</li>
+        <li>Cuánta propina dejan</li>
+        <li>Qué hay en el menú del hotel oficial</li>
+        <li>Cuánto cuesta dormir donde duermen ellos</li>
+        <li>¿Vienen solos o acompañados?</li>
+        <li>Búsqueda de famosos en bares y eventos</li>
+      </ul>
+    </div>
+    <div class="rec-col col-2">
+      <div class="layer-mark">— Capa IV · A</div>
+      <h3>Cobertura<br><em>de partido</em></h3>
+      <div class="rec-count">09</div>
+      <ul>
+        <li>Previa con argentinos en la fan zone</li>
+        <li>Cobertura desde adentro y afuera del estadio</li>
+        <li>Post-partido en zona de prensa</li>
+        <li>3 partidos × 3 piezas = 9 cápsulas</li>
+        <li>Una rutina visual reconocible cada matchday</li>
+      </ul>
+    </div>
+    <div class="rec-col col-3">
+      <div class="layer-mark">— Capa IV · B</div>
+      <h3>Vlogs<br><em>de viaje</em></h3>
+      <div class="rec-count">03</div>
+      <ul>
+        <li>Llegada a Kansas City: la base de la Selección</li>
+        <li>Mudanza a Dallas: el equipo se mueve</li>
+        <li>Cierre de fase de grupos: balance del recorrido</li>
+        <li>Tono lifestyle, formato vlog, ADN Pepe Ochoa</li>
+      </ul>
+    </div>
+  </div>
+  <div class="slide-num">10</div>
+</section>
+
+<!-- ════════ SLIDE 11 — DISTRIBUCIÓN ════════ -->
+<section class="slide dist" id="s11">
+  <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> Distribución</div>
+  <div class="dist-head">
+    <h2>Dos niveles,<br><em>un ecosistema.</em></h2>
+    <div class="lead">Núcleo orgánico desde Pepe Ochoa + amplificación opcional vía TV abierta y stream<br>para multiplicar el reach a audiencia mainstream.</div>
+  </div>
+  <div class="dist-body">
+    <div class="dist-block dist-core">
+      <div class="dist-tag-row">
+        <div class="dist-tag">Core · Incluido</div>
+      </div>
+      <h3>Distribución<br><em>orgánica.</em></h3>
+      <div class="channels">
+        <div class="channel">
+          <div class="channel-mark">IG</div>
+          <div class="channel-info">
+            <div class="ch-name">Instagram · Reels + Stories</div>
+            <div class="ch-handle">@pepeochoa88 · ~250K views por reel · ~60K por historia</div>
+          </div>
+          <div class="channel-type">Principal</div>
+        </div>
+        <div class="channel">
+          <div class="channel-mark">TT</div>
+          <div class="channel-info">
+            <div class="ch-name">TikTok</div>
+            <div class="ch-handle">@pepeochoa88 · vertical-first, replica + native</div>
+          </div>
+          <div class="channel-type">Reach</div>
+        </div>
+        <div class="channel">
+          <div class="channel-mark">X</div>
+          <div class="channel-info">
+            <div class="ch-name">X (Twitter)</div>
+            <div class="ch-handle">@pepeochoa88 · cobertura en tiempo real + clips</div>
+          </div>
+          <div class="channel-type">Conversación</div>
+        </div>
+      </div>
+      <div class="dist-note">Todo el contenido se sube primero a las cuentas de Pepe: <strong>Instagram + TikTok + X (Twitter)</strong>. La identidad y el tono editorial los pone Pepe.</div>
+    </div>
+    <div class="dist-block dist-bonus">
+      <div class="dist-tag-row">
+        <div class="dist-tag">Cobertura TV / Stream</div>
+      </div>
+      <h3>LAM · Bondi<br><em>· SQP.</em></h3>
+      <div class="channels">
+        <div class="channel">
+          <div class="channel-mark">L</div>
+          <div class="channel-info">
+            <div class="ch-name">LAM (América TV)</div>
+            <div class="ch-handle">Cápsula "Pepe en el Mundial"</div>
+          </div>
+          <div class="channel-type">TV abierta</div>
+        </div>
+        <div class="channel">
+          <div class="channel-mark">B</div>
+          <div class="channel-info">
+            <div class="ch-name">Bondi Live</div>
+            <div class="ch-handle">@bondi_liveok · Stream YouTube</div>
+          </div>
+          <div class="channel-type">Stream</div>
+        </div>
+        <div class="channel">
+          <div class="channel-mark">S</div>
+          <div class="channel-info">
+            <div class="ch-name">SQP — Sálvese Quien Pueda</div>
+            <div class="ch-handle">Yanina Latorre · América TV</div>
+          </div>
+          <div class="channel-type">TV abierta</div>
+        </div>
+      </div>
+      <div class="dist-note">Pepe tiene relación directa con Ángel de Brito y Yanina Latorre. Combo LAM + Bondi + SQP <strong>negociable en USD 15-20K</strong>. Detalle de inversión en slide 13.</div>
+    </div>
+  </div>
+  <div class="slide-num">11</div>
+</section>
+
+<!-- ════════ SLIDE 12 — EQUIPO EN TERRENO ════════ -->
+<section class="slide team" id="s12">
+  <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> El equipo</div>
+  <div class="team-head">
+    <h2>Quiénes <em>viajan,</em><br>quiénes <em>quedan.</em></h2>
+    <div class="meta">Equipo lean en terreno + post en Argentina<br><strong>3 viajan · 1 base AR</strong></div>
+  </div>
+  <div class="team-grid">
+    <div class="team-card travels">
+      <div class="role-num">01</div>
+      <h3>Host<em>· enviado especial</em></h3>
+      <p>Pepe Ochoa. Conducción, presencia en cámara, vocería del ciclo. La cara visible del proyecto. Suma coordinación creativa en terreno.</p>
+      <div class="role-tag">PEPE OCHOA</div>
+    </div>
+    <div class="team-card travels">
+      <div class="role-num">02</div>
+      <h3>Director<em>· de fotografía</em></h3>
+      <p>Cámara principal y look visual del ciclo. Responsable del lenguaje cinematográfico y dirección de cada toma.</p>
+      <div class="role-tag">A confirmar</div>
+    </div>
+    <div class="team-card travels">
+      <div class="role-num">03</div>
+      <h3>Asistente<em>· cámara 2 / sonido</em></h3>
+      <p>Segunda cámara, microfoneo, soporte técnico y gestión de equipos en locaciones cambiantes.</p>
+      <div class="role-tag">A confirmar</div>
+    </div>
+    <div class="team-card remote">
+      <div class="role-num">04</div>
+      <h3>Editor<em>· en caliente</em></h3>
+      <p>Edita y entrega <strong>día por día</strong> mientras dura el Mundial. Turnaround 24-48h por pieza. Base en Argentina, recibe material en rolling.</p>
+      <div class="role-tag">A confirmar</div>
+    </div>
+  </div>
+  <div class="team-summary">
+    <div class="team-sum-item">
+      <div class="lbl">Personas en terreno</div>
+      <div class="val">3 <em>en USA</em></div>
+    </div>
+    <div class="team-sum-item">
+      <div class="lbl">Días de shoot</div>
+      <div class="val">~21 <em>días</em></div>
+    </div>
+    <div class="team-sum-item">
+      <div class="lbl">Hubs principales</div>
+      <div class="val">2 <em>+ 1 opc.</em></div>
+    </div>
+    <div class="team-sum-item">
+      <div class="lbl">Post-producción</div>
+      <div class="val">AR <em>· rolling</em></div>
+    </div>
+  </div>
+  <div class="slide-num">12</div>
+</section>
+
+<!-- ════════ SLIDE 13 — INVERSIÓN ════════ -->
+<section class="slide invest" id="s13">
+  <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> Inversión</div>
+  <div class="invest-head">
+    <h2>La <em>propuesta.</em></h2>
+    <div class="lead">Producción completa + amplificación opcional. Un escenario base que cierra el deal y un upgrade que multiplica visibilidad.</div>
+  </div>
+  <div class="invest-body">
+    <div class="invest-main">
+      <div class="scenario-tag">Escenario Core · Todo incluido</div>
+      <div class="invest-amount"><span class="currency">USD</span> 65 000</div>
+      <ul class="invest-includes">
+        <li>Pepe Ochoa · 3 semanas en USA</li>
+        <li>Equipo lean: 3 en terreno (host + DP + asistente) + 1 post AR</li>
+        <li>Vuelos, alojamiento, viáticos, traslados</li>
+        <li>Equipamiento + alquiler local en USA</li>
+        <li>Edición rolling · entregas diarias durante el Mundial</li>
+        <li>Coordinación de invitadas + canjes operativos</li>
+        <li>Distribución orgánica · IG + TikTok + X (Twitter)</li>
+        <li>Coordinación creativa · dirección Ramped en terreno</li>
+      </ul>
+    </div>
+    <div class="invest-bonus">
+      <div class="scenario-tag">Cobertura · TV / Stream</div>
+      <h3>LAM · Bondi<br><em>· SQP.</em></h3>
+      <div class="amt-bonus">USD 15&nbsp;000 – 20&nbsp;000</div>
+      <ul>
+        <li>Cápsula "Pepe en el Mundial" en LAM (América TV)</li>
+        <li>Cobertura editorial en SQP (Yanina Latorre)</li>
+        <li>Bondi Live · Stream YouTube</li>
+      </ul>
+      <div class="note">Rango negociado en base a la relación directa de Pepe con Ángel de Brito y Yanina Latorre. Cierre final tras confirmación.</div>
+    </div>
+    <div class="invest-foot">— <strong>Fee Ramped por agencia + dirección creativa: 15% del total de la acción · NO incluido en los montos de arriba.</strong> Se factura aparte una vez confirmado el budget final.</div>
+  </div>
+  <div class="slide-num">13</div>
+</section>
+
+<!-- ════════ SLIDE 14 — CIERRE ════════ -->
+<section class="slide closing" id="s14">
+  <div class="slide-tag">El Lado B del Mundial <span class="pipe">/</span> Próximos pasos</div>
+  <div class="closing-head">
+    <h2>Hay que <em>arrancar</em><br>ya.</h2>
+    <div class="lead">El Mundial empieza el <strong>11 de junio de 2026</strong>. Tenemos ~5 semanas desde la firma para producir todo. Esta es la ruta crítica.</div>
+  </div>
+  <div class="timeline">
+    <div class="tl-step active">
+      <div class="phase">— Fase 01</div>
+      <h4>Firma <em>+ kick off</em></h4>
+      <div class="when-txt">Cierre del deal · brief creativo</div>
+    </div>
+    <div class="tl-step">
+      <div class="phase">— Fase 02</div>
+      <h4>Pre<em>producción</em></h4>
+      <div class="when-txt">Casting + logística · hasta 9 jun</div>
+    </div>
+    <div class="tl-step">
+      <div class="phase">— Fase 03</div>
+      <h4>Viaje <em>+ shoot USA</em></h4>
+      <div class="when-txt">3 sem · 10 jun → 28 jun</div>
+    </div>
+    <div class="tl-step">
+      <div class="phase">— Fase 04</div>
+      <h4>Edición <em>en caliente</em></h4>
+      <div class="when-txt">10 jun → 27 jun · rolling 24-48h</div>
+    </div>
+    <div class="tl-step">
+      <div class="phase">— Fase 05</div>
+      <h4>Recopilación <em>+ cierre</em></h4>
+      <div class="when-txt">Post viaje · julio</div>
+    </div>
+  </div>
+  <div class="closing-cta">
+    <div class="closing-cta-text">
+      <div class="big">¿Arrancamos<br><em>esta semana?</em></div>
+      <p>Para llegar al primer partido de Argentina <strong>(16 jun)</strong> necesitamos cerrar producción esta semana. El próximo paso es alinear talent, presupuesto definitivo y kick-off creativo.</p>
+    </div>
+    <div class="closing-contact">
+      <div class="lbl">— Próximo paso</div>
+      <div class="who">Ramped</div>
+      <div class="role">Agencia · producción · dirección creativa</div>
+      <div class="mail">santiago@getramped.com</div>
+    </div>
+  </div>
+  <div class="slide-num">14</div>
+</section>
+
+<!-- NAV RAIL -->
+<div class="nav-rail" id="navRail"></div>
+<div class="help-key">↑ ↓ navegar · espacio</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const navRail = document.getElementById('navRail');
+
+  // Build nav rail
+  slides.forEach((s, i) => {
+    const b = document.createElement('button');
+    b.title = 'Pg. ' + (i + 1);
+    b.addEventListener('click', () => s.scrollIntoView({ behavior: 'smooth' }));
+    navRail.appendChild(b);
+  });
+  const railBtns = document.querySelectorAll('.nav-rail button');
+
+  // Active rail (no entrance fade-in to avoid titilation)
+  const seen = new Set();
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      const i = Array.from(slides).indexOf(e.target);
+      if (e.isIntersecting && e.intersectionRatio > 0.4) {
+        railBtns.forEach(b => b.classList.remove('active'));
+        if (railBtns[i]) railBtns[i].classList.add('active');
+        if (!seen.has(i)) {
+          seen.add(i);
+          e.target.classList.add('first-view');
+        }
+      }
+    });
+  }, { threshold: [0.4, 0.6] });
+  slides.forEach(s => observer.observe(s));
+
+  // Keyboard nav
+  let current = 0;
+  document.addEventListener('keydown', (e) => {
+    if (['ArrowDown', 'PageDown', ' '].includes(e.key)) {
+      e.preventDefault();
+      current = Math.min(current + 1, slides.length - 1);
+      slides[current].scrollIntoView({ behavior: 'smooth' });
+    }
+    if (['ArrowUp', 'PageUp'].includes(e.key)) {
+      e.preventDefault();
+      current = Math.max(current - 1, 0);
+      slides[current].scrollIntoView({ behavior: 'smooth' });
+    }
+    if (e.key === 'Home') { current = 0; slides[0].scrollIntoView({ behavior: 'smooth' }); }
+    if (e.key === 'End') { current = slides.length - 1; slides[current].scrollIntoView({ behavior: 'smooth' }); }
+  });
+
+  // Track current
+  let st;
+  document.addEventListener('scroll', () => {
+    clearTimeout(st);
+    st = setTimeout(() => {
+      const mid = window.scrollY + window.innerHeight / 2;
+      slides.forEach((s, i) => {
+        if (mid >= s.offsetTop && mid < s.offsetTop + s.offsetHeight) current = i;
+      });
+    }, 100);
+  });
+
+  // Custom cursor
+  const cdot = document.getElementById('cdot');
+  const cring = document.getElementById('cring');
+  let cx = 0, cy = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', (e) => {
+    cx = e.clientX; cy = e.clientY;
+    cdot.style.transform = `translate(${cx - 3}px, ${cy - 3}px)`;
+  });
+  function tickRing() {
+    rx += (cx - rx) * 0.18;
+    ry += (cy - ry) * 0.18;
+    cring.style.transform = `translate(${rx - 16}px, ${ry - 16}px)`;
+    requestAnimationFrame(tickRing);
+  }
+  tickRing();
+
+  // Cursor expand on hover over interactive elements
+  document.querySelectorAll('.toc-row, .flow-step, .nav-rail button, .match, .channel, .tent, .why-item, .team-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cring.style.width = '52px';
+      cring.style.height = '52px';
+      cring.style.borderColor = 'var(--orange)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cring.style.width = '32px';
+      cring.style.height = '32px';
+      cring.style.borderColor = 'var(--cream)';
+    });
+  });
+
+  // Inyectar link cruzado al resumen ejecutivo en cada slide
+  document.querySelectorAll('section.slide').forEach(slide => {
+    const link = document.createElement('a');
+    link.className = 'cross-deck-link';
+    link.href = 'https://getramped.com/betanomundial2';
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = 'Ver resumen ejecutivo';
+    slide.appendChild(link);
+  });
+</script>
+
+</body>
+</html>

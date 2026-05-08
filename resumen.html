@@ -1375,19 +1375,43 @@
     .invest::before { font-size: clamp(20rem, 50vw, 40rem); }
   }
   @media (max-width: 720px) {
-    body { cursor: auto; }
+    /* MOBILE: scroll natural, sin snap, sin overflow:hidden, sin altura forzada */
+    body {
+      cursor: auto;
+      scroll-snap-type: none;
+      overscroll-behavior: auto;
+    }
+    html { scroll-behavior: smooth; }
     .c-dot, .c-ring, .ambient-light { display: none; }
-    .topbar { grid-template-columns: 1fr auto; gap: 0.6rem; padding: 0.8rem var(--gutter) 0.6rem; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      grid-template-columns: 1fr auto;
+      gap: 0.6rem;
+      padding: 0.7rem var(--gutter) 0.55rem;
+      background: rgba(10,9,8,0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
     .pager { display: none; }
     .lockup .label { display: none; }
     .out-link { font-size: 0.55rem; }
     .folio { font-size: 0.55rem; gap: 0.5rem; }
     .folio .sep { display: none; }
     .folio .res { display: none; }
-    .edition-stamp { width: 76px; height: 76px; top: 12vh; }
-    .edition-stamp .num { font-size: 1rem; }
+    .edition-stamp { display: none; }
 
-    .slide { padding: 9vh 6vw 5vh; }
+    .slide {
+      width: 100%;
+      height: auto;
+      min-height: auto;
+      overflow: visible;
+      scroll-snap-align: none;
+      padding: 4vh 6vw 5vh;
+    }
+    .cover { padding-top: 3vh; }
+    .invest { padding-top: 4vh; }
     .super-h { font-size: clamp(2.6rem, 11vw, 4.5rem); }
     .pull-quote { font-size: 0.95rem; padding-left: 1.2rem; }
     .pull-quote .hl-mag { font-size: 1rem; }
@@ -1417,6 +1441,14 @@
     .bl-deadline { text-align: left; }
     .invest-foot { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
     .invest-foot .deadline-line { text-align: left; }
+
+    /* Cover hero stack on mobile */
+    .cover-hero { grid-template-columns: 1fr; gap: 2.5vh; }
+    .hero-left, .hero-right { width: 100%; }
+    .pull-quote { max-width: 100%; }
+    .host-block { max-width: 100%; padding-top: 2vh; }
+    .invest-grid { grid-template-columns: 1fr; gap: 1.4rem; }
+    .ticker { margin-top: 2.5vh; }
   }
 
   /* ═══════════════════════════════════════════════════════════════
