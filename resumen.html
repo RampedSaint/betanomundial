@@ -49,10 +49,10 @@
   }
 
   .cross-deck-link {
-    position: fixed;
+    position: absolute;
     top: 5.5vh;
     right: 5vw;
-    z-index: 9000;
+    z-index: 11;
     font-family: var(--body);
     font-size: 0.58rem;
     letter-spacing: 0.28em;
@@ -61,11 +61,10 @@
     color: var(--cream);
     opacity: 0.55;
     text-decoration: none;
-    padding: 0;
+    padding: 0 0 0.15rem 0;
     background: transparent;
     border: none;
     border-bottom: 1px solid rgba(244,236,216,0.3);
-    padding-bottom: 0.15rem;
     transition: opacity 0.2s, color 0.2s, border-color 0.2s;
   }
   .cross-deck-link::before { content: '→ '; color: var(--orange); opacity: 1; margin-right: 0.2em; }
@@ -874,6 +873,7 @@
     <span class="lockup-x">×</span>
     <img src="betano-deck-assets/betano-logo.png" alt="Betano" class="logo-betano">
   </div>
+  <a class="cross-deck-link" href="https://getramped.com/betanomundial" target="_blank" rel="noopener">Ver versión completa</a>
 
   <div class="concept-head">
     <h1>El Lado B<br><em>del Mundial.</em></h1>
@@ -926,6 +926,7 @@
     <span class="lockup-x">×</span>
     <img src="betano-deck-assets/betano-logo.png" alt="Betano" class="logo-betano">
   </div>
+  <a class="cross-deck-link" href="https://getramped.com/betanomundial" target="_blank" rel="noopener">Ver versión completa</a>
 
   <div class="invest-head">
     <h1>La <em>propuesta.</em></h1>
@@ -978,8 +979,6 @@
 
   <div class="slide-num">02</div>
 </section>
-
-<a class="cross-deck-link" href="https://getramped.com/betanomundial" target="_blank" rel="noopener">Ver versión completa</a>
 
 </body>
 </html>

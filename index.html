@@ -56,10 +56,10 @@
   }
 
   .cross-deck-link {
-    position: fixed;
+    position: absolute;
     top: 5.5vh;
     right: 5vw;
-    z-index: 9000;
+    z-index: 11;
     font-family: var(--body);
     font-size: 0.58rem;
     letter-spacing: 0.28em;
@@ -68,12 +68,15 @@
     color: var(--cream);
     opacity: 0.55;
     text-decoration: none;
-    padding: 0;
+    padding: 0 0 0.15rem 0;
     background: transparent;
     border: none;
     border-bottom: 1px solid rgba(244,236,216,0.3);
-    padding-bottom: 0.15rem;
     transition: opacity 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .cover .cross-deck-link, .closing .cross-deck-link, .idea .cross-deck-link, .plan .cross-deck-link, .team .cross-deck-link, .rec .cross-deck-link {
+    color: var(--ink);
+    border-bottom-color: rgba(20,17,15,0.3);
   }
   .cross-deck-link::before { content: '→ '; color: var(--orange); opacity: 1; margin-right: 0.2em; }
   .cross-deck-link:hover {
@@ -3774,9 +3777,18 @@
       cring.style.borderColor = 'var(--cream)';
     });
   });
-</script>
 
-<a class="cross-deck-link" href="https://getramped.com/betanomundial2" target="_blank" rel="noopener">Ver resumen ejecutivo</a>
+  // Inyectar link cruzado al resumen ejecutivo en cada slide
+  document.querySelectorAll('section.slide').forEach(slide => {
+    const link = document.createElement('a');
+    link.className = 'cross-deck-link';
+    link.href = 'https://getramped.com/betanomundial2';
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = 'Ver resumen ejecutivo';
+    slide.appendChild(link);
+  });
+</script>
 
 </body>
 </html>
