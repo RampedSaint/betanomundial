@@ -50,31 +50,30 @@
 
   .cross-deck-link {
     position: fixed;
-    bottom: 1.5vh;
+    bottom: 1.8vh;
     left: 5vw;
-    z-index: 50;
+    z-index: 9000;
     font-family: var(--body);
-    font-size: 0.65rem;
-    letter-spacing: 0.22em;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    font-weight: 700;
-    color: var(--cream);
+    font-weight: 800;
+    color: var(--ink);
     text-decoration: none;
-    padding: 0.4rem 0.8rem;
-    background: rgba(20,17,15,0.55);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border: 1px solid rgba(255,107,0,0.35);
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    padding: 0.55rem 0.95rem;
+    background: var(--orange);
+    border: 1px solid var(--orange-deep);
+    box-shadow: 0 4px 18px rgba(255,107,0,0.35);
+    transition: background 0.2s, color 0.2s, transform 0.18s;
   }
-  .cross-deck-link::before { content: '→ '; color: var(--orange); margin-right: 0.2em; }
+  .cross-deck-link::before { content: '→ '; color: var(--ink); margin-right: 0.25em; font-weight: 900; }
   .cross-deck-link:hover {
-    color: var(--orange);
-    border-color: var(--orange);
-    background: rgba(255,107,0,0.08);
+    background: var(--cream);
+    color: var(--ink);
+    transform: translateY(-1px);
   }
   @media (max-width: 880px) {
-    .cross-deck-link { font-size: 0.55rem; padding: 0.3rem 0.6rem; bottom: 2vh; left: 6vw; letter-spacing: 0.16em; }
+    .cross-deck-link { font-size: 0.6rem; padding: 0.4rem 0.7rem; bottom: 2vh; left: 6vw; letter-spacing: 0.14em; }
   }
 
   .slide {
