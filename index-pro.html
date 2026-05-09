@@ -373,25 +373,30 @@ body.c-magnet .c-ring {
   background:var(--cream-warm);
   color:var(--ink);
   padding:9vh var(--gutter) 6vh;
-  justify-content:space-between;
 }
 .idea::before {
-  content:'EL MUNDIAL ES DE TODOS'; position:absolute; top:8vh; left:0; right:0;
+  content:'BETANO X MUNDIAL'; position:absolute; bottom:-3vh; left:50%;
+  transform:translateX(-50%);
   font-family:var(--display); font-weight:900;
-  font-size:clamp(4rem, 8vw, 9rem);
-  color:rgba(20,17,15,0.04); letter-spacing:-0.04em;
-  white-space:nowrap; pointer-events:none;
-  text-align:center;
+  font-size:clamp(6rem, 14vw, 16rem);
+  color:rgba(20,17,15,0.035); letter-spacing:-0.04em;
+  white-space:nowrap; pointer-events:none; line-height:0.85;
 }
 .idea-grid {
-  display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+  display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
   gap:5vw; align-items:stretch; flex:1; min-height:0;
+  position:relative; z-index:2;
 }
-.idea-left { display:flex; flex-direction:column; gap:3vh; padding-top:2vh; justify-content:space-between; }
+.idea-left {
+  display:flex; flex-direction:column;
+  justify-content:space-between;
+  padding-top:2vh; gap:3vh;
+}
 .idea-eyebrow-row {
   display:flex; align-items:center; gap:1rem;
   border-bottom:1px solid rgba(20,17,15,0.18);
-  padding-bottom:1vh;
+  padding-bottom:1.4vh;
+  margin-bottom:2vh;
 }
 .idea-eyebrow-row .eyebrow { color:var(--orange); }
 .idea-eyebrow-row .eyebrow::before { background:var(--orange); }
@@ -401,40 +406,25 @@ body.c-magnet .c-ring {
 }
 .idea-headline {
   font-family:var(--display); font-weight:900;
-  font-size:clamp(3.2rem, 7vw, 7.5rem); line-height:0.92;
-  color:var(--ink); letter-spacing:-0.03em; text-transform:uppercase;
+  font-size:clamp(3.8rem, 9vw, 9.5rem); line-height:0.88;
+  color:var(--ink); letter-spacing:-0.035em; text-transform:uppercase;
 }
 .idea-headline em {
   font-family:var(--serif); font-style:italic; font-weight:300;
   color:var(--orange-deep); text-transform:none;
   font-variation-settings:"opsz" 144;
 }
-.idea-body {
-  display:grid; grid-template-columns:1fr 1fr; gap:2.5vw;
-  padding-top:2vh; border-top:1px solid rgba(20,17,15,0.18);
-}
-.idea-col p {
-  font-family:var(--body); font-size:0.95rem; line-height:1.55;
-  color:var(--ink); opacity:0.85;
-}
-.idea-col p + p { margin-top:0.9rem; }
-.idea-col p strong { color:var(--orange-deep); font-weight:700; }
-.idea-col p .dropcap {
-  float:left; font-family:var(--serif); font-style:italic; font-weight:500;
-  font-size:4.8em; line-height:0.85; padding:0.06em 0.1em 0 0;
-  color:var(--orange); font-variation-settings:"opsz" 144;
-}
 
 .idea-right {
   position:relative; padding-top:2vh;
   border-left:1px solid rgba(20,17,15,0.18);
   padding-left:3vw;
-  display:flex; flex-direction:column; gap:2.5vh;
+  display:flex; flex-direction:column; gap:3vh;
   justify-content:space-between;
 }
 .idea-quote {
   font-family:var(--serif); font-style:italic; font-weight:300;
-  font-size:clamp(1.6rem, 2.4vw, 2.4rem); line-height:1.3;
+  font-size:clamp(1.4rem, 2.1vw, 2.1rem); line-height:1.3;
   color:var(--ink); position:relative; padding-left:1.4rem;
   font-variation-settings:"opsz" 96;
 }
@@ -451,13 +441,28 @@ body.c-magnet .c-ring {
   letter-spacing:0.32em; text-transform:uppercase;
   color:var(--ink); opacity:0.55; font-style:normal; font-weight:600;
 }
+.idea-body-stack {
+  display:flex; flex-direction:column; gap:1.2rem;
+  padding:1.5vh 0;
+}
+.idea-body-stack p {
+  font-family:var(--body); font-size:clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height:1.55; color:var(--ink); opacity:0.85;
+}
+.idea-body-stack p strong { color:var(--orange-deep); font-weight:700; }
+.idea-body-stack .dropcap {
+  float:left; font-family:var(--serif); font-style:italic; font-weight:500;
+  font-size:4.5em; line-height:0.85; padding:0.05em 0.1em 0 0;
+  color:var(--orange-deep); font-variation-settings:"opsz" 144;
+}
+
 .idea-tags {
-  display:flex; flex-wrap:wrap; gap:0.4rem 0.5rem;
+  display:flex; flex-wrap:wrap; gap:0.5rem 0.55rem;
   padding-top:2vh; border-top:1px solid rgba(20,17,15,0.18);
 }
 .idea-tag {
-  font-family:var(--mono); font-size:0.55rem; letter-spacing:0.22em;
-  text-transform:uppercase; padding:0.4rem 0.7rem;
+  font-family:var(--mono); font-size:0.62rem; letter-spacing:0.22em;
+  text-transform:uppercase; padding:0.5rem 0.8rem;
   border:1px solid rgba(20,17,15,0.3);
   color:var(--ink); font-weight:600;
 }
@@ -1489,19 +1494,23 @@ body.c-magnet .c-ring {
   margin-top:0.3rem;
 }
 .team-grid {
-  display:grid; grid-template-columns:repeat(4, 1fr); gap:1rem;
+  display:grid; grid-template-columns:repeat(5, 1fr); gap:0.9rem;
   flex:1; align-items:stretch;
 }
 .team-card {
   background:var(--ink); color:var(--cream);
-  padding:1.8rem 1.6rem 1.4rem;
+  padding:1.5rem 1.3rem 1.2rem;
   display:flex; flex-direction:column;
   position:relative; overflow:hidden;
   transition:transform .35s var(--ease-out);
-  justify-content:space-between; gap:1rem;
+  justify-content:space-between; gap:0.9rem;
 }
 .team-card:hover { transform:translateY(-4px); }
 .team-card.travels { border-top:3px solid var(--orange); }
+.team-card.travels.accent { border-top-color:var(--magenta); background:linear-gradient(180deg, rgba(255,31,107,0.08), var(--ink)); }
+.team-card.travels.accent .role-num { color:var(--magenta); }
+.team-card.travels.accent h3 em { color:var(--magenta); }
+.team-card.travels.accent .role-tag { color:var(--magenta); }
 .team-card.remote { border-top:3px solid var(--gold); }
 .team-card .role-num {
   font-family:var(--display); font-style:italic; font-weight:900;
@@ -1511,9 +1520,9 @@ body.c-magnet .c-ring {
 .team-card.remote .role-num { color:var(--gold); }
 .team-card h3 {
   font-family:var(--display); font-weight:800;
-  font-size:1.4rem; line-height:1; text-transform:uppercase;
+  font-size:1.2rem; line-height:1; text-transform:uppercase;
   color:var(--cream); letter-spacing:-0.01em;
-  margin-bottom:0.5rem;
+  margin-bottom:0.4rem;
 }
 .team-card h3 em {
   font-family:var(--serif); font-style:italic; font-weight:300;
@@ -2097,22 +2106,19 @@ body.c-magnet .c-ring {
 
 <!-- ═══════ SLIDE 02 — IDEA ═══════ -->
 <section class="slide idea" id="s2">
+  <div class="idea-eyebrow-row">
+    <span class="eyebrow">La idea editorial</span>
+    <span class="stamp">— Issue Nº 01 · La premisa</span>
+  </div>
   <div class="idea-grid">
     <div class="idea-left">
-      <div class="idea-eyebrow-row">
-        <span class="eyebrow">La idea editorial</span>
-        <span class="stamp">— Issue Nº 01</span>
-      </div>
       <h2 class="idea-headline" data-reveal data-d="1">El Mundial<br>que no <em>se ve</em><br>en la tele.</h2>
-      <div class="idea-body">
-        <div class="idea-col" data-reveal data-d="3">
-          <p><span class="dropcap">E</span>n época de Mundial, todas las marcas hablan del partido. <strong>Betano elige el otro camino.</strong></p>
-          <p>Detrás de cada jugador hay vínculos, familias y rituales que también son protagonistas — pero casi nunca aparecen en cámara.</p>
-        </div>
-        <div class="idea-col" data-reveal data-d="4">
-          <p>Buscamos el clima en el que aparecen las mejores anécdotas: <strong>cercanía, autenticidad y confianza.</strong></p>
-          <p>Una mirada íntima, mundialista y argentina al entorno cercano de la Selección — familia, parejas, rituales y la conversación que arma el público.</p>
-        </div>
+      <div class="idea-tags" data-reveal data-d="3">
+        <span class="idea-tag">Cercanía</span>
+        <span class="idea-tag">Lifestyle</span>
+        <span class="idea-tag">Mujer + Mundial</span>
+        <span class="idea-tag solid">Anti-rating</span>
+        <span class="idea-tag">Conversación 7/7</span>
       </div>
     </div>
     <div class="idea-right" data-reveal data-d="2">
@@ -2120,12 +2126,9 @@ body.c-magnet .c-ring {
         <span>"Mientras todos cuentan el partido, nosotros contamos <em>la víspera</em>. La casa, la familia, los rituales."</span>
         <span class="pull-author">— Premisa editorial</span>
       </div>
-      <div class="idea-tags">
-        <span class="idea-tag">Cercanía</span>
-        <span class="idea-tag">Lifestyle</span>
-        <span class="idea-tag">Mujer + Mundial</span>
-        <span class="idea-tag solid">Anti-rating</span>
-        <span class="idea-tag">Conversación 7/7</span>
+      <div class="idea-body-stack">
+        <p><span class="dropcap">E</span>n época de Mundial, todas las marcas hablan del partido. <strong>Betano elige el otro camino.</strong> Detrás de cada jugador hay vínculos, familias y rituales que también son protagonistas — pero casi nunca aparecen en cámara.</p>
+        <p>Buscamos el clima en el que aparecen las mejores anécdotas: <strong>cercanía, autenticidad y confianza.</strong> Una mirada íntima, mundialista y argentina al entorno cercano de la Selección — familia, parejas, rituales y la conversación que arma el público.</p>
       </div>
     </div>
   </div>
@@ -2590,21 +2593,21 @@ body.c-magnet .c-ring {
   <div class="team-head">
     <h2 class="team-headline" data-reveal data-d="1">Quiénes <em>viajan,</em><br>quiénes <em>quedan.</em></h2>
     <div class="team-meta" data-reveal data-d="2">
-      Equipo lean en terreno + post en Argentina.
-      <strong>3 viajan · 1 base AR</strong>
+      Equipo en terreno + post en Argentina.
+      <strong>4 viajan · 1 base AR</strong>
     </div>
   </div>
   <div class="team-grid">
     <div class="team-card travels" data-reveal data-d="2">
       <div class="role-num">01</div>
       <h3>Host<em>· enviado especial</em></h3>
-      <p>Pepe Ochoa. Conducción, presencia en cámara, vocería del ciclo. Suma <strong>coordinación creativa</strong> en terreno.</p>
+      <p>Pepe Ochoa. Conducción, presencia en cámara, vocería del ciclo. La cara visible del proyecto.</p>
       <div class="role-tag">Pepe Ochoa</div>
     </div>
     <div class="team-card travels" data-reveal data-d="3">
       <div class="role-num">02</div>
-      <h3>Director<em>· de fotografía</em></h3>
-      <p>Cámara principal y look visual del ciclo. Responsable del lenguaje cinematográfico y dirección de cada toma.</p>
+      <h3>Productor<em>· general</em></h3>
+      <p>Coordinación de logística, casting, agenda diaria, relación con invitadas, presupuesto y cronograma.</p>
       <div class="role-tag">A confirmar</div>
     </div>
     <div class="team-card travels" data-reveal data-d="4">
@@ -2613,8 +2616,14 @@ body.c-magnet .c-ring {
       <p>Segunda cámara, microfoneo, soporte técnico y gestión de equipos en locaciones cambiantes.</p>
       <div class="role-tag">A confirmar</div>
     </div>
-    <div class="team-card remote" data-reveal data-d="5">
+    <div class="team-card travels accent" data-reveal data-d="5">
       <div class="role-num">04</div>
+      <h3>Director<em>· creativo</em></h3>
+      <p>Dirección creativa de la agencia en terreno. Garantiza alineación con Betano, calidad editorial y resolución en vivo de cada nota.</p>
+      <div class="role-tag">Santiago · Ramped</div>
+    </div>
+    <div class="team-card remote" data-reveal data-d="6">
+      <div class="role-num">05</div>
       <h3>Editor<em>· en caliente</em></h3>
       <p>Edita y entrega <strong>día por día</strong> mientras dura el Mundial. Turnaround 24-48h por pieza. Base en Argentina, recibe material en rolling.</p>
       <div class="role-tag">A confirmar</div>
@@ -2623,7 +2632,7 @@ body.c-magnet .c-ring {
   <div class="team-summary" data-reveal data-d="6">
     <div class="team-sum-item">
       <div class="lbl">Personas en terreno</div>
-      <div class="val">3 <em>en USA</em></div>
+      <div class="val">4 <em>en USA</em></div>
     </div>
     <div class="team-sum-item">
       <div class="lbl">Días de shoot</div>
